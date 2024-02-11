@@ -5,57 +5,52 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/WeTalk.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/379dc8b4b8017be687eb2c07296d4ea2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WeTalk/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WeTalk/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WeTalk/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WeTalk/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WeTalk/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/consumers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/routing.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/templates/chat/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/templates/chat/room.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/chat/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/A1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/image/A2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/css/soho.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/icons/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/icons/themify/fonts/themify.woff" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/js/examples.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/js/soho.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/call-bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/jquery插件库.url" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/reset-password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/vendor/bootstrap/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/vendor/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/vendor/jquery.nicescroll.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/vendor/popper.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jqueryweblt/www.jq22.com.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tmp.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/apps.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/migrations/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/tests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/jquery-3.4.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/js/soho.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/chat_index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/chat_room.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/拍照.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/379dc8b4b8017be687eb2c07296d4ea2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeTalk/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeTalk/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WeTalk/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/routing.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/routing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/templates/chat/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/templates/chat/room.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/css/soho.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/soho.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/icons/font-awesome/fonts/fontawesome-webfont.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/static/icons/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/icons/themify/fonts/themify.woff" beforeDir="false" afterPath="$PROJECT_DIR$/static/icons/themify/fonts/themify.woff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/js/examples.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/examples.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/js/soho.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/call-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/call-bg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar2.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar3.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar4.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar5.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/bootstrap/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/bootstrap.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/jquery-3.4.1.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/jquery.nicescroll.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/jquery.nicescroll.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/popper.min.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +61,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -114,6 +110,9 @@
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\static" />
+      <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\templates" />
+      <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\jqueryweblt\dist\js" />
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\image" />
     </key>
   </component>
@@ -213,7 +212,7 @@
       <updated>1707473583113</updated>
       <workItem from="1707473600187" duration="21183000" />
       <workItem from="1707558887462" duration="6178000" />
-      <workItem from="1707622626396" duration="1357000" />
+      <workItem from="1707622626396" duration="15486000" />
     </task>
     <servers />
   </component>

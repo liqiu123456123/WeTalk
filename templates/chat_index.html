@@ -1,0 +1,35 @@
+<!-- chat/templates/chat/index.html -->  <!-- 这是文件的路径和名称注释，表明这是聊天室的索引页面模板文件 -->
+<!DOCTYPE html>  <!-- 声明文档类型和HTML版本 -->
+<html>  <!-- HTML文档的根元素 -->
+<head>  <!-- 头部区域，包含文档的元信息 -->
+    <meta charset="utf-8"/>  <!-- 设置文档字符编码为UTF-8 -->
+    <title>Chat Rooms</title>  <!-- 设置网页标题为"Chat Rooms" -->
+</head>
+<body>  <!-- 文档的主体部分 -->
+    What chat room would you like to enter?<br>  <!-- 提问用户想要进入哪个聊天室，并使用<br>标签换行 -->
+    <input id="room-name-input" type="text" size="100"><br>  <!-- 创建一个文本输入框，用于用户输入聊天室名称，并设置其ID为"room-name-input"，同时设置输入框大小为100个字符 -->
+    <input id="room-name-submit" type="button" value="Enter">  <!-- 创建一个按钮，用户点击后可以提交聊天室名称，设置其ID为"room-name-submit"，并设置按钮上显示的文字为"Enter" -->
+
+    <script>  <!-- 开始JavaScript脚本 -->
+        // 当页面加载时，将焦点自动设置到聊天室名称输入框
+        document.querySelector('#room-name-input').focus();
+
+        // 当用户在输入框中按下键盘上的键时，执行以下函数
+        document.querySelector('#room-name-input').onkeyup = function(e) {
+            // 检查按下的键是否是回车键
+            if (e.key === 'Enter') {
+                // 如果是回车键，则模拟点击"Enter"按钮
+                document.querySelector('#room-name-submit').click();
+            }
+        };
+
+        // 当用户点击"Enter"按钮时，执行以下函数
+        document.querySelector('#room-name-submit').onclick = function(e) {
+            // 获取输入框中的聊天室名称
+            var roomName = document.querySelector('#room-name-input').value;
+            // 使用JavaScript修改当前页面的URL，以指向聊天室页面，并将聊天室名称作为路径的一部分
+            window.location.pathname = '/chat/' + roomName + '/';
+        };
+    </script>
+</body>
+</html>  <!-- HTML文档结束 -->
