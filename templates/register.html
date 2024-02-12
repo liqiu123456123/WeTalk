@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Soho - Chat and Discussion Platform</title>
+    <title>欢迎注册WeTalk</title>
 
     <!-- Favicon -->
     <link rel="icon" href="/static/media/img/favicon.png" type="image/png">
@@ -57,6 +57,15 @@
             <input type="password" name="repeat_password" class="form-control" placeholder="重复密码" required>
         </div>
         {% endif %}
+    
+    <!-- 添加获取邮箱验证码的输入框 -->  
+    <div class="form-group input-group-lg">  
+        <input type="text" name="email_verification_code" class="form-control" placeholder="请输入邮箱验证码" required>  
+    </div>  
+    <!-- 添加一个按钮或链接来发送验证码 -->  
+    <div class="form-group">  
+        <button type="button" class="btn btn-secondary btn-lg btn-block" id="send-verification-code">发送验证码</button>  
+    </div>  
     <div>{{ tips }}</div>
         <button class="btn btn-primary btn-lg btn-block">注册</button>
         <hr>
@@ -66,7 +75,41 @@
     <!-- ./ form -->
 
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+<script>  
+$(document).ready(function() {  
+    $('#send-verification-code').click(function() { 
+         // 禁用按钮，防止用户重复点击  
+        $(this).prop('disabled', true);  
+          
+        // 改变按钮文本  
+        $(this).text('已发送');  
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();  
+        console.log(csrfToken);
+        var email = $('input[name="email"]').val(); // 假设你的邮箱输入框的name属性为"email"  
+        if (!email) {  
+            $('#tips').text('请输入邮箱地址');  
+            return;  
+        }  
+  
+        $.ajax({  
+            url: '../send_code/',  
+            type: 'POST',  
+            data: { email: email,csrfmiddlewaretoken: csrfToken},  
+            success: function(response) {  
+                if (response.message) {  
+                    $('#tips').text(response.message);  
+                } else {  
+                    $('#tips').text('未知错误');  
+                }  
+            },  
+            error: function(xhr, status, error) {  
+                $('#tips').text('发送验证码失败: ' + error);  
+            }  
+        });  
+    });  
+});  
+</script>
 <!-- JQuery -->
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 

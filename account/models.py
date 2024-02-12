@@ -14,3 +14,9 @@ class MyUser(AbstractUser):
     # 设置返回值
     def __str__(self):
         return self.name
+
+
+class EmailValid(models.Model):
+    value = models.CharField(max_length = 32)
+    email_address = models.EmailField()
+    times = models.DateTimeField()

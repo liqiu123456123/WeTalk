@@ -1,15 +1,17 @@
+import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-from django.contrib.auth import logout
 from django.urls import reverse
-from django.contrib.auth import authenticate
-
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
-
-from account.models import MyUser
-
+from account.models import MyUser,EmailValid
+import random
+from django.core.mail import EmailMessage
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 class CustomBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
@@ -17,8 +19,43 @@ class CustomBackend(ModelBackend):
             user = MyUser.objects.get(Q(email=username))
             if user.check_password(password):
                 return user
-        except Exception as e:  #可以捕获除与程序退出sys.exit()相关之外的所有异常
+        except Exception as e:  # 可以捕获除与程序退出sys.exit()相关之外的所有异常
             return None
+
+
+# 生成随机验证码的函数
+def generate_verification_code(length=6):
+    return ''.join(random.choices('0123456789', k=length))
+
+
+def send_verification_code(request):
+    # 获取请求中的邮箱地址
+    email = request.POST.get('email')
+    if not email:
+        return JsonResponse({'error': 'Email is required.'}, status=400)
+
+        # 生成验证码
+    verification_code = generate_verification_code()
+
+    # 存储验证码（例如，在用户的session中）
+    request.session['verification_code'] = verification_code
+
+    # 发送邮件
+    subject = '注册激活码'
+    body = f'你的注册激活码: {verification_code}'
+    print("shoujian", email)
+    email_message = EmailMessage(subject, body, to=[email])
+    email_message.send()
+
+    e = EmailValid()  # 实例化表
+    e.email_address = email  # 存入注册邮箱
+    e.value = verification_code  # 存入验证码
+    e.times = datetime.datetime.now()  # 存入时间
+    e.save()  # 保存入数据库
+    # 返回响应
+    return JsonResponse({'message': '注册激活码发送成功'}, status=200)
+
+
 @login_required
 def index(request):
     return render(request, "index.html")
@@ -55,13 +92,16 @@ def register(request):
         password = request.POST.get('password', '')
         email = request.POST.get('email', '')
         repeat_password = request.POST.get('repeat_password', '')
-
+        email_code = request.POST.get('email_verification_code', '')
+        db_code = EmailValid.objects.filter(email_address=email).order_by('-times').first()
         # Check for existing username
-        if MyUser.objects.filter(username=username).exists():
-            tips = '用户已存在'
+        if MyUser.objects.filter(email=email).exists():
+            tips = '邮箱已注册'
             # Check for password consistency
         elif repeat_password != password:
             tips = '两次密码输入不一致'
+        elif email_code != db_code.value:
+            tips = '验证码错误'
         else:
             # Create the user with the provided information
             try:
