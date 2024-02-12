@@ -4,58 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/account/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/admin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/apps.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/migrations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/tests.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/jquery-3.4.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/js/soho.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/chat_index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/chat_room.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/拍照.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+    <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="2.11更新">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/379dc8b4b8017be687eb2c07296d4ea2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeTalk/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WeTalk/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeTalk/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/routing.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/routing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/templates/chat/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/templates/chat/room.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/css/soho.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/soho.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/icons/font-awesome/fonts/fontawesome-webfont.woff2" beforeDir="false" afterPath="$PROJECT_DIR$/static/icons/font-awesome/fonts/fontawesome-webfont.woff2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/icons/themify/fonts/themify.woff" beforeDir="false" afterPath="$PROJECT_DIR$/static/icons/themify/fonts/themify.woff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/js/examples.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/examples.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/js/soho.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/call-bg.png" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/call-bg.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar2.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar2.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/man_avatar5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/man_avatar5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar3.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar3.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar4.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar4.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/dist/media/img/women_avatar5.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/static/media/img/women_avatar5.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/reset-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/reset-password.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/bootstrap/bootstrap.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/bootstrap.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/jquery-3.4.1.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/jquery.nicescroll.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/jquery.nicescroll.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jqueryweblt/vendor/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/popper.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/soho.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/soho.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/examples.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/examples.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/popper.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/popper.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -70,7 +40,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -83,26 +53,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django 服务器.WeTalk.executor&quot;: &quot;Run&quot;,
-    &quot;Python.setup.executor&quot;: &quot;Run&quot;,
-    &quot;Python.tmp.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/PycharmProjects/WeTalk/templates&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django 服务器.WeTalk.executor": "Run",
+    "Python.setup.executor": "Run",
+    "Python.tmp.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "django.template.preview.state": "SHOW_EDITOR",
+    "last_opened_file_path": "C:/Users/Administrator/PycharmProjects/deal_tool/Automated_data_cleaning",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\templates" />
@@ -212,12 +183,26 @@
       <updated>1707473583113</updated>
       <workItem from="1707473600187" duration="21183000" />
       <workItem from="1707558887462" duration="6178000" />
-      <workItem from="1707622626396" duration="15486000" />
+      <workItem from="1707622626396" duration="16647000" />
+      <workItem from="1707708599133" duration="18879000" />
     </task>
+    <task id="LOCAL-00001" summary="2.11更新">
+      <option name="closed" value="true" />
+      <created>1707648226555</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1707648226556</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="2.11更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.11更新" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WeTalk$tmp.coverage" NAME="tmp 覆盖结果" MODIFIED="1707557713967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

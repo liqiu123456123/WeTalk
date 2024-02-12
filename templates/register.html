@@ -8,10 +8,10 @@
     <title>Soho - Chat and Discussion Platform</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="./dist/media/img/favicon.png" type="image/png">
+    <link rel="icon" href="/static/media/img/favicon.png" type="image/png">
 
     <!-- Soho css -->
-    <link rel="stylesheet" href="dist/css/soho.min.css">
+    <link rel="stylesheet" href="/static/css/soho.min.css">
 </head>
 <body class="form-membership">
 
@@ -41,23 +41,27 @@
     <h5>注册账号</h5>
 
     <!-- form -->
-    <form>
+    <form action="" method="post">
+        {% csrf_token %}
         <div class="form-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Firstname" required autofocus>
+            <input type="text" name="username" class="form-control" placeholder="昵称" required>
         </div>
         <div class="form-group input-group-lg">
-            <input type="text" class="form-control" placeholder="Lastname" required>
+            <input type="email" name="email" class="form-control" placeholder="邮箱" required>
         </div>
         <div class="form-group input-group-lg">
-            <input type="email" class="form-control" placeholder="Email" required>
+            <input type="password" name="password" class="form-control" placeholder="密码" required>
         </div>
+        {% if confirmPassword %}
         <div class="form-group input-group-lg">
-            <input type="password" class="form-control" placeholder="Password" required>
+            <input type="password" name="repeat_password" class="form-control" placeholder="重复密码" required>
         </div>
-        <button class="btn btn-primary btn-lg btn-block">Register</button>
+        {% endif %}
+    <div>{{ tips }}</div>
+        <button class="btn btn-primary btn-lg btn-block">注册</button>
         <hr>
-        <p class="text-muted">Already have an account?</p>
-        <a href="./login.html" class="btn btn-outline-light btn-sm">Sign in!</a>
+        <p class="text-muted">已经有账号?</p>
+        <a href="./login.html" class="btn btn-outline-light btn-sm">去登陆!</a>
     </form>
     <!-- ./ form -->
 
@@ -67,12 +71,12 @@
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
 <!-- Popper.js -->
-<script src="./vendor/popper.min.js"></script>
+<script src="/static/js/popper.min.js"></script>
 
 <!-- Bootstrap -->
-<script src="./vendor/bootstrap/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
 
 <!-- Soho -->
-<script src="dist/js/soho.min.js"></script>
+<script src="/static/js/soho.min.js"></script>
 </body>
 </html>
