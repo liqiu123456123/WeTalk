@@ -126,6 +126,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # 实际名，即实际文件夹的名字
@@ -152,3 +155,4 @@ EMAIL_HOST_PASSWORD = 'fkixfgyvwooxbfib'
 EMAIL_UES_TLS = 'liqiu6789@qq.com'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

@@ -1,17 +1,46 @@
 import datetime
-
+import os
+import uuid
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
-from account.models import MyUser,EmailValid
+from account.models import MyUser, EmailValid
 import random
 from django.core.mail import EmailMessage
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from .forms import FileUploadModelForm
+from .models import MyUser
+from WeTalk.settings import MEDIA_ROOT
+def upload_file_ajax(request):
+    if request.method == "POST":
+    #     file = request.FILES.get('file')
+    #     file_path = os.path.join(MEDIA_ROOT, file.name)
+    #     with open(file_path, 'wb') as f:
+    #         for i in file:
+    #             f.write(i)
+    #     return JsonResponse({'success': 'File uploaded successfully', })
+    #
+    # else:
+    #     return JsonResponse({'error': 'File upload failed'}, status=400)
+    #     print(MEDIA_ROOT)
+        form = FileUploadModelForm(request.POST, request.FILES)
+        unique_username = str(uuid.uuid4())
+
+        # 使用 UUID 更新表单中的 username 字段
+        form.instance.username = unique_username
+        print(request.POST)
+        print(request.FILES)
+        if form.is_valid():
+            form.save()
+        return JsonResponse({'success': 'File uploaded successfully',})
+    else:
+            return JsonResponse({'error': 'File upload failed'}, status=400)
+
 
 class CustomBackend(ModelBackend):
     def authenticate(self, request, username=None, password=None, **kwargs):
