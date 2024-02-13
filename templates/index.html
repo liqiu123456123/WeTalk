@@ -120,7 +120,7 @@
                         <input type="text" class="form-control" id="emails">
                     </div>
                     <div class="form-group">
-                        <label for="message" class="col-form-label">邀请信息</label>
+                        <label for="message" class="col-form-label">验证信息</label>
                         <textarea class="form-control" id="message"></textarea>
                     </div>
                 </form>
@@ -213,7 +213,7 @@
                         <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"
                            aria-controls="personal" aria-selected="true">个人信息</a>
                     </li>
-                    
+
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane show active" id="personal" role="tabpanel">
@@ -328,40 +328,20 @@
             <div id="chats" class="sidebar active">
                 <header>
                     <span>聊天</span>
-                    <ul class="list-inline">
-                        <li class="list-inline-item" data-toggle="tooltip" title="New Group">
-                            <a class="btn btn-light" href="#" data-toggle="modal" data-target="#newGroup">
-                                <i class="fa fa-users"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a class="btn btn-light" data-toggle="tooltip" title="New Chat" href="#"
-                               data-navigation-target="friends">
-                                <i class="ti-comment-alt"></i>
-                            </a>
-                        </li>
-                        <li class="list-inline-item d-lg-none d-sm-block">
-                            <a href="#" class="btn btn-light sidebar-close">
-                                <i class="ti-close"></i>
-                            </a>
-                        </li>
-                    </ul>
                 </header>
                 <form action="">
                     <input type="text" class="form-control" placeholder="搜索聊天">
                 </form>
                 <div class="sidebar-body">
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <figure class="avatar avatar-state-success">
+                        <li class="list-group-item open-chat">
+                            <figure class="avatar">
                                 <img src="/static/media/img/man_avatar1.jpg" class="rounded-circle">
                             </figure>
                             <div class="users-list-body">
                                 <h5>张三</h5>
                                 <p>床前明月光</p>
-                                <div class="users-list-action">
-                                    <div class="new-message-count">2</div>
-                                </div>
+
                             </div>
                         </li>
                         <li class="list-group-item open-chat">
@@ -425,18 +405,16 @@
                             </div>
                             <div class="users-list-body">
                                 <h5>孙九</h5>
-                                <p>曲项向天歌</p>
                                 <div class="users-list-action action-toggle">
                                     <div class="dropdown">
                                         <a data-toggle="dropdown" href="#">
                                             <i class="ti-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
+                                            <a href="#" class="dropdown-item">发消息</a>
                                             <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
+                                               class="dropdown-item">查看主页</a>
+                                            <a href="#" class="dropdown-item">删除好友</a>
                                         </div>
                                     </div>
                                 </div>
