@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="1.注册登陆完成&#10;2.中文替换完成">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/20457c1e-879f-4997-b212-6715c1975c37.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/20457c1e-879f-4997-b212-6715c1975c37/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/24484809-1edc-4880-8ca0-6b34551939d2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/24484809-1edc-4880-8ca0-6b34551939d2/storage_v2/_src_/schema/main.uQUzAA.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/migrations/0002_alter_myuser_email.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/account/migrations/0003_emailvalid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/数据库设计.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WeTalk/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/soho.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/soho.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,6 +183,7 @@
       <workItem from="1707622626396" duration="16647000" />
       <workItem from="1707708599133" duration="22900000" />
       <workItem from="1707744964421" duration="3641000" />
+      <workItem from="1707787476638" duration="14743000" />
     </task>
     <task id="LOCAL-00001" summary="2.11更新">
       <option name="closed" value="true" />

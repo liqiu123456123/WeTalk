@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chat',
     'account',
+    'friendship',
 
 ]
 ASGI_APPLICATION = "WeTalk.asgi.application"

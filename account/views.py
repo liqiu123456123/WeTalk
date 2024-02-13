@@ -43,7 +43,6 @@ def send_verification_code(request):
     # 发送邮件
     subject = '注册激活码'
     body = f'你的注册激活码: {verification_code}'
-    print("shoujian", email)
     email_message = EmailMessage(subject, body, to=[email])
     email_message.send()
 

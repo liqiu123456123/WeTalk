@@ -20,3 +20,4 @@ class EmailValid(models.Model):
     value = models.CharField(max_length = 32)
     email_address = models.EmailField()
     times = models.DateTimeField()
+

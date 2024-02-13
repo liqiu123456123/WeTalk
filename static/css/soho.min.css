@@ -191,7 +191,9 @@ figure {
 
 img {
     vertical-align: middle;
-    border-style: none
+    border-style: none;
+        width: 72px;
+    height: 72px;
 }
 
 svg {
@@ -19342,7 +19344,11 @@ nav.navigation ul li a.active {
 
 nav.navigation ul li a.logo {
     margin-bottom: 1rem;
-    background-color: #3db16b
+    background-color: #3db16b;
+        height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 nav.navigation ul li a.logo svg path {

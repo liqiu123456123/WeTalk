@@ -7,9 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WeTalk</title>
 
-    <!-- Favicon -->
-    <link rel="icon" href="/static/media/img/favicon.png" type="image/png">
-
     <!-- Soho css -->
     <link rel="stylesheet" href="/static/css/soho.min.css">
 </head>
@@ -197,108 +194,6 @@
 </div>
 <!-- ./ new group modal -->
 
-<!-- setting modal -->
-<div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    <i class="ti-settings"></i> 设置
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <i class="ti-close"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#account" role="tab" aria-controls="account"
-                           aria-selected="true">账号</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#notification" role="tab"
-                           aria-controls="notification" aria-selected="false">通知</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-                           aria-selected="false">安全</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane show active" id="account" role="tabpanel">
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" checked id="customSwitch1">
-                            <label class="custom-control-label" for="customSwitch1">允许连接的联系人</label>
-                        </div>
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" checked id="customSwitch2">
-                            <label class="custom-control-label" for="customSwitch2">确认消息请求</label>
-                        </div>
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" checked id="customSwitch3">
-                            <label class="custom-control-label" for="customSwitch3">个人资料隐私</label>
-                        </div>
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch4">
-                            <label class="custom-control-label" for="customSwitch4">开发人员模式选项</label>
-                        </div>
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" checked id="customSwitch5">
-                            <label class="custom-control-label" for="customSwitch5">两步安全验证</label>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="notification" role="tabpanel">
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" checked id="customSwitch6">
-                            <label class="custom-control-label" for="customSwitch6">允许移动通知</label>
-                        </div>
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch7">
-                            <label class="custom-control-label" for="customSwitch7">来自您的通知朋友</label>
-                        </div>
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch8">
-                            <label class="custom-control-label" for="customSwitch8">通过电子邮件发送通知</label>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="contact" role="tabpanel">
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="customSwitch9">
-                            <label class="custom-control-label" for="customSwitch9">建议每隔更改一次密码月</label>
-                        </div>
-                        <div class="form-item custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" checked id="customSwitch10">
-                            <label class="custom-control-label"
-                                   for="customSwitch10">让我知道可疑的事情您帐户的条目</label>
-                        </div>
-                        <div class="form-item">
-                            <p>
-                                <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-                                   aria-controls="collapseExample">
-                                    <span class="ti-plus btn-icon"></span> 安全问题
-                                </a>
-                            </p>
-                            <div class="collapse" id="collapseExample">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Question 1">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Question 2">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- ./ setting modal -->
-
 <!-- edit profile modal -->
 <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -306,7 +201,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i class="ti-pencil"></i> 主页
+                    <i class="ti-pencil"></i> 个人信息
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="ti-close"></i>
@@ -316,22 +211,15 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active" data-toggle="tab" href="#personal" role="tab"
-                           aria-controls="personal" aria-selected="true">个人的</a>
+                           aria-controls="personal" aria-selected="true">个人信息</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#about" role="tab" aria-controls="about"
-                           aria-selected="false">关于</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#social-links" role="tab"
-                           aria-controls="social-links" aria-selected="false">社交链接</a>
-                    </li>
+                    
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane show active" id="personal" role="tabpanel">
                         <form>
                             <div class="form-group">
-                                <label for="fullname" class="col-form-label">全名</label>
+                                <label for="fullname" class="col-form-label">昵称</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -342,7 +230,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-form-label">化身</label>
+                                <label class="col-form-label">头像</label>
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <figure class="avatar mr-3 item-rtl">
@@ -356,7 +244,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="city" class="col-form-label">城市</label>
+                                <label for="city" class="col-form-label">地区</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
@@ -374,122 +262,19 @@
                                             <i class="ti-mobile"></i>
                                         </span>
                                     </div>
-                                    <input type="text" class="form-control" id="phone" placeholder="(555) 555 55 55">
+                                    <input type="text" class="form-control" id="phone" placeholder="123 4567 8901">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="website" class="col-form-label">网页</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="ti-link"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control" id="website">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane" id="about" role="tabpanel">
-                        <form action="">
                             <div class="form-group">
                                 <label for="about-text" class="col-form-label">个性签名</label>
                                 <textarea class="form-control" id="about-text"></textarea>
-                            </div>
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" checked id="customCheck1">
-                                <label class="custom-control-label" for="customCheck1">查看主页</label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="tab-pane" id="social-links" role="tabpanel">
-                        <form action="">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-facebook">
-                                        <i class="ti-facebook"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-twitter">
-                                        <i class="ti-twitter"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-instagram">
-                                        <i class="ti-instagram"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-linkedin">
-                                        <i class="ti-linkedin"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-dribbble">
-                                        <i class="ti-dribbble"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-youtube">
-                                        <i class="ti-youtube"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-google">
-                                        <i class="ti-google"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                    <span class="input-group-text bg-whatsapp">
-                                        <i class="fa fa-whatsapp"></i>
-                                    </span>
-                                    </div>
-                                    <input type="text" class="form-control" placeholder="Username">
-                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-primary">保存</button>
             </div>
         </div>
     </div>
@@ -505,38 +290,7 @@
             <ul>
                 <li>
                     <a class="logo" href="#">
-                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                             width="33.004px" height="33.003px" viewBox="0 0 33.004 33.003"
-                             style="enable-background:new 0 0 33.004 33.003;"
-                             xml:space="preserve">
-                            <g>
-                                <path d="M4.393,4.788c-5.857,5.857-5.858,15.354,0,21.213c4.875,4.875,12.271,5.688,17.994,2.447l10.617,4.161l-4.857-9.998
-                                    c3.133-5.697,2.289-12.996-2.539-17.824C19.748-1.072,10.25-1.07,4.393,4.788z M25.317,22.149l0.261,0.512l1.092,2.142l0.006,0.01
-                                    l1.717,3.536l-3.748-1.47l-0.037-0.015l-2.352-0.883l-0.582-0.219c-4.773,3.076-11.221,2.526-15.394-1.646
-                                    C1.469,19.305,1.469,11.481,6.277,6.672c4.81-4.809,12.634-4.809,17.443,0.001C27.919,10.872,28.451,17.368,25.317,22.149z"/>
-                                <g>
-                                    <circle cx="9.835" cy="16.043" r="1.833"/>
-                                    <circle cx="15.502" cy="16.043" r="1.833"/>
-                                    <circle cx="21.168" cy="16.043" r="1.833"/>
-                                </g>
-                            </g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                            <g></g>
-                        </svg>
+                        <img src="/static/media/img/man_avatar3.jpg" id="myImage">
                     </a>
                 </li>
                 <li>
@@ -549,23 +303,13 @@
                         <i class="ti-user"></i>
                     </a>
                 </li>
-                <li data-navigation-target="favorites" class="brackets">
-                    <a href="#">
-                        <i class="ti-star"></i>
-                    </a>
-                </li>
                 <li>
                     <a href="#" data-toggle="modal" data-target="#editProfileModal">
                         <i class="ti-pencil"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#" data-toggle="modal" data-target="#settingModal">
-                        <i class="ti-settings"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="./login.html">
+                    <a href="/login">
                         <i class="ti-power-off"></i>
                     </a>
                 </li>
@@ -604,7 +348,7 @@
                     </ul>
                 </header>
                 <form action="">
-                    <input type="text" class="form-control" placeholder="Search chat">
+                    <input type="text" class="form-control" placeholder="搜索聊天">
                 </form>
                 <div class="sidebar-body">
                     <ul class="list-group list-group-flush">
@@ -645,108 +389,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <div class="avatar-group">
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-warning bg-success rounded-circle">
-                                        <i class="fa fa-users"></i>
-                                    </span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>娱乐集团</h5>
-                                <p><strong>王五: </strong>你好!!!</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">Profile</a>
-                                            <a href="#" class="dropdown-item">添加到压缩文件</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar avatar-state-warning">
-                                    <img src="/static/media/img/women_avatar1.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>赵六</h5>
-                                <p>举头望明月</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-info rounded-circle">M</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>钱七</h5>
-                                <p>低头思故乡</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="/static/media/img/man_avatar2.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>孙爸</h5>
-                                <p>鹅鹅鹅</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -770,7 +413,7 @@
                     </ul>
                 </header>
                 <form action="">
-                    <input type="text" class="form-control" placeholder="Search chat">
+                    <input type="text" class="form-control" placeholder="搜索聊天">
                 </form>
                 <div class="sidebar-body">
                     <ul class="list-group list-group-flush">
@@ -799,330 +442,10 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-success rounded-circle">A</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>李十一</h5>
-                                <p>白毛浮绿水</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="/static/media/img/women_avatar1.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>吴十二</h5>
-                                <p>红掌拨清波</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="/static/media/img/man_avatar3.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>郑十二</h5>
-                                <p>好雨知时节</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="/static/media/img/man_avatar2.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>王十三</h5>
-                                <p>当春乃发生</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-info rounded-circle">AD</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>李二</h5>
-                                <p>随风潜入夜</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-warning rounded-circle">S</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>李三</h5>
-                                <p>润物细无声</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="/static/media/img/man_avatar1.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>李四</h5>
-                                <p>春眠不觉晓</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="/static/media/img/man_avatar5.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>李五</h5>
-                                <p>处处闻啼鸟</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-secondary rounded-circle">B</span>
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>李六</h5>
-                                <p>夜来风雨声</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
+
                     </ul>
                 </div>
             </div>
-            <!-- ./ Friends sidebar -->
-
-            <!-- Favorites sidebar -->
-            <div id="favorites" class="sidebar">
-                <header>
-                    <span>收藏</span>
-                    <ul class="list-inline">
-                        <li class="list-inline-item d-lg-none d-sm-block">
-                            <a href="#" class="btn btn-light sidebar-close">
-                                <i class="ti-close"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </header>
-                <form action="">
-                    <input type="text" class="form-control" placeholder="Search favorites">
-                </form>
-                <div class="sidebar-body">
-                    <ul class="list-group list-group-flush users-list">
-                        <li class="list-group-item">
-                            <div class="users-list-body">
-                                <h5>赵一</h5>
-                                <p>聊天文本1</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">查看聊天</a>
-                                            <a href="#" class="dropdown-item">转发</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="users-list-body">
-                                <h5>赵二</h5>
-                                <p>聊天文本二</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">查看聊天</a>
-                                            <a href="#" class="dropdown-item">转发</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="users-list-body">
-                                <h5>赵三</h5>
-                                <p>聊天文本三</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">查看聊天</a>
-                                            <a href="#" class="dropdown-item">转发</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="users-list-body">
-                                <h5>赵四</h5>
-                                <p>聊天文本四</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">查看聊天</a>
-                                            <a href="#" class="dropdown-item">转发</a>
-                                            <a href="#" class="dropdown-item">删除</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- ./ Stars sidebar -->
-
         </div>
         <!-- ./ sidebar group -->
 
@@ -1461,7 +784,5 @@
 <!-- Soho -->
 <script src="/static/js/soho.min.js"></script>
 
-<!-- Examples -->
-{#<script src="/static/js/examples.js"></script>#}
 </body>
 </html>
