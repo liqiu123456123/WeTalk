@@ -1,6 +1,5 @@
 import datetime
 import os
-import uuid
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -11,35 +10,29 @@ from account.models import MyUser, EmailValid
 import random
 from django.core.mail import EmailMessage
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.http import require_POST
-from .forms import FileUploadModelForm
-from .models import MyUser
 from WeTalk.settings import MEDIA_ROOT
-def upload_file_ajax(request):
-    if request.method == "POST":
-    #     file = request.FILES.get('file')
-    #     file_path = os.path.join(MEDIA_ROOT, file.name)
-    #     with open(file_path, 'wb') as f:
-    #         for i in file:
-    #             f.write(i)
-    #     return JsonResponse({'success': 'File uploaded successfully', })
-    #
-    # else:
-    #     return JsonResponse({'error': 'File upload failed'}, status=400)
-    #     print(MEDIA_ROOT)
-        form = FileUploadModelForm(request.POST, request.FILES)
-        unique_username = str(uuid.uuid4())
+from .models import MyUser
 
-        # 使用 UUID 更新表单中的 username 字段
-        form.instance.username = unique_username
-        print(request.POST)
-        print(request.FILES)
-        if form.is_valid():
-            form.save()
-        return JsonResponse({'success': 'File uploaded successfully',})
+def upload_file(request):
+    if request.method == "POST":
+        # 或者使用 items() 方法同时获取键和值
+        print(request.user)
+        file = request.FILES.get('file')
+        file_path = os.path.join(MEDIA_ROOT, "avatars", file.name)
+        with open(file_path, 'wb') as f:
+            for i in file:
+                f.write(i)
+        my_user = MyUser.objects.get(username='liqile')
+
+        # 更新 avatar 字段
+        my_user.avatar = file.name
+
+        # 保存对象
+        my_user.save()
+        return JsonResponse({'success': 'File uploaded successfully', })
+
     else:
-            return JsonResponse({'error': 'File upload failed'}, status=400)
+        return JsonResponse({'error': 'File upload failed'}, status=400)
 
 
 class CustomBackend(ModelBackend):

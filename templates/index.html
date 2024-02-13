@@ -240,7 +240,7 @@
                                     <div class="custom-file">
                                         <form form method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
-                                            
+
                                             <input type="file" id="fileInput" name="fileInput" >
                                             <button type="button" onclick="uploadFile()">上传文件</button>
                                         </form>
@@ -781,23 +781,23 @@
 
 <script>
     function uploadFile() {
-        // 假设你有一个文件输入元素  
+        // 假设你有一个文件输入元素
         var fileInput = document.getElementById('fileInput');
-        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();  
+        var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
 
-// 创建FormData对象  
+// 创建FormData对象
         var formData = new FormData();
         formData.append('file', fileInput.files[0]);
 
-// 发送Ajax请求  
+// 发送Ajax请求
         var xhr = new XMLHttpRequest();
         console.log(csrfToken);
-         
-        xhr.open('POST', '/upload_file_ajax/', true);
-        xhr.setRequestHeader('X-CSRFToken', csrfToken); 
+
+        xhr.open('POST', '/upload_file/', true);
+        xhr.setRequestHeader('X-CSRFToken', csrfToken);
         xhr.onload = function () {
             if (xhr.status === 200) {
-                // 请求成功处理  
+                // 请求成功处理
                 var response = JSON.parse(xhr.responseText);
                 if (response.success) {
                     alert('文件上传成功，ID为: ' + response.id);
@@ -805,13 +805,13 @@
                     alert('文件上传失败: ' + response.error);
                 }
             } else {
-                // 请求失败处理  
+                // 请求失败处理
                 alert('请求失败');
             }
         };
         xhr.send(formData);
-        // 调用上面定义的Ajax代码  
-        // ...  
+        // 调用上面定义的Ajax代码
+        // ...
     }
 </script>
 </body>

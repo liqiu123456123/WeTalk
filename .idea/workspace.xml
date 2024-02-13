@@ -4,18 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="1.优化html界面">
-      <change afterPath="$PROJECT_DIR$/account/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/migrations/0004_alter_myuser_photo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/migrations/0005_alter_myuser_photo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/migrations/0006_remove_myuser_photo_myuser_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/media/Q1.png" afterDir="false" />
+    <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="1.上传文件完成">
+      <change afterPath="$PROJECT_DIR$/account/migrations/0003_remove_myuser_name.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/avatars/修改文字素材.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/avatars/倾斜素材.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/avatars/抠图1.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/avatars/水印练习.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/avatars/通道抠图.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/avatars/钢笔抠图.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/avatars/魔棒抠图1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/24484809-1edc-4880-8ca0-6b34551939d2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/24484809-1edc-4880-8ca0-6b34551939d2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WeTalk/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0002_alter_myuser_email.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0003_emailvalid.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0004_alter_myuser_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0005_alter_myuser_photo.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/migrations/0006_remove_myuser_photo_myuser_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/migrations/0002_remove_myuser_file_myuser_avatar.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/WeTalk.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/Q1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +49,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -185,7 +198,7 @@
       <workItem from="1707622626396" duration="16647000" />
       <workItem from="1707708599133" duration="22900000" />
       <workItem from="1707744964421" duration="3641000" />
-      <workItem from="1707787476638" duration="30855000" />
+      <workItem from="1707787476638" duration="38640000" />
     </task>
     <task id="LOCAL-00001" summary="2.11更新">
       <option name="closed" value="true" />
@@ -219,7 +232,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707815184651</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="1.上传文件完成">
+      <option name="closed" value="true" />
+      <created>1707836768016</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1707836768016</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +251,8 @@
     <MESSAGE value="1.注册登陆完成&#10;2.中文替换完成" />
     <MESSAGE value="1.使用邮箱验证码登陆&#10;2.优化html界面" />
     <MESSAGE value="1.优化html界面" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.优化html界面" />
+    <MESSAGE value="1.上传文件完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.上传文件完成" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WeTalk$tmp.coverage" NAME="tmp 覆盖结果" MODIFIED="1707557713967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
