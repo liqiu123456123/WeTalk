@@ -287,50 +287,27 @@
                     <input type="text" class="form-control" placeholder="搜索聊天">
                 </form>
                 <div class="sidebar-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item open-chat">
+                    <ul class="list-group list-group-flush" id="myList111">
+                        <li class="list-group-item open-chat" data-modal="modal123">
                             <figure class="avatar">
-                                <img src="/static/media/img/man_avatar1.jpg" class="rounded-circle">
+                                <img src="/static/media/img/man_avatar1.jpg" class="rounded-circle" data-modal="modal123">
                             </figure>
                             <div class="users-list-body">
-                                <h5>张三</h5>
-                                <p>床前明月光</p>
+                                <h5 data-modal="modal123" >张三</h5>
+                                <p data-modal="modal123" >床前明月光</p>
                                 <div class="users-list-action action-toggle">
                                     <div class="dropdown">
                                         <a data-toggle="dropdown" href="#">
                                             <i class="ti-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">发消息</a>
+                                            <a href="#" class="dropdown-item" >发消息</a>
                                             <a href="#" class="dropdown-item">删除好友</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </li>
-                        <li class="list-group-item open-chat">
-                            <div>
-                                <figure class="avatar">
-                                    <img src="/static/media/img/man_avatar3.jpg" class="rounded-circle">
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                <h5>李四</h5>
-                                <p>疑是地上霜</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">发消息</a>
-                                            <a href="#" class="dropdown-item">删除好友</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-
                     </ul>
                 </div>
             </div>
@@ -364,7 +341,7 @@
                             <div>
                                 <figure class="avatar">
                                     {% if user.get_from_user_username == current_user.username %}
- 
+
                                     <img src="{{ user.get_to_user_avatar.url }}" class="rounded-circle">
 
                                     {% else %}
@@ -384,7 +361,7 @@
                                             <i class="ti-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">发消息</a>
+                                            <a href="#" class="dropdown-item" data-navigation-target="chats">发消息</a>
                                             <a href="#" class="dropdown-item">删除好友</a>
                                         </div>
                                     </div>
@@ -399,7 +376,7 @@
         <!-- ./ sidebar group -->
 
         <!-- chat -->
-        <div class="chat">
+        <div class="chat" id="modal123">
             <div class="chat-header">
                 <div class="chat-header-user">
                     <figure class="avatar avatar-lg">
@@ -555,7 +532,34 @@
 
 <!-- Soho -->
 <script src="/static/js/soho.min.js"></script>
-
+<script>
+    document.getElementById('myList111').addEventListener('click', function(event) {  
+  var target = event.target;  
+  if (event.target.matches('.list-group-item') || event.target.closest('.list-group-item')) {  
+    var modalId = target.getAttribute('data-modal');  
+    console.log(modalId)
+    var modal = document.getElementById(modalId);  
+  
+    // 隐藏所有模态框  
+    document.querySelectorAll('.modal').forEach(function(modal) {  
+      modal.style.display = 'none';  
+    });  
+  
+    // 显示被点击的模态框  
+    if (modal) {  
+      modal.style.display = 'block';  
+    }  
+  }  
+});  
+  
+// 添加关闭模态框的功能  
+document.querySelectorAll('.close').forEach(function(closeBtn) {  
+  closeBtn.addEventListener('click', function() {  
+    var modal = this.parentElement.parentElement;  
+    modal.style.display = 'none';  
+  });  
+});
+</script>
 <script>
     function uploadFile() {
         // 假设你有一个文件输入元素
