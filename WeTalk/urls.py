@@ -8,6 +8,7 @@ from chat import views
 urlpatterns = [
     path("", include("account.urls")),
     path("chat/", include("chat.urls")),
+    path("friend/", include("friendship.urls")),
     path("admin/", admin.site.urls),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
 ]

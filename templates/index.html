@@ -2,9 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WeTalk</title>
 
     <!-- Soho css -->
@@ -21,46 +18,6 @@
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
         <div class="modal-content">
-            <div class="modal-body">
-                <div class="connection-error">
-                    <h4 class="text-center">应用程序已断开连接。。。</h4>
-                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                         y="0px"
-                         width="862.899px" height="862.9px" viewBox="0 0 862.899 862.9"
-                         style="enable-background:new 0 0 862.899 862.9;"
-                         xml:space="preserve">
-                        <g>
-                            <g>
-                                <circle cx="385.6" cy="656.1" r="79.8"/>
-                                <path d="M561.7,401c-15.801-10.3-32.601-19.2-50.2-26.6c-39.9-16.9-82.3-25.5-126-25.5c-44.601,0-87.9,8.9-128.6,26.6
-                                    c-39.3,17-74.3,41.3-104.1,72.2L253.5,545c34.899-36.1,81.8-56,132-56c49,0,95.1,19.1,129.8,53.8l25.4-25.399L493,469.7L561.7,401
-                                    z"/>
-                                <path d="M385.6,267.1c107.601,0,208.9,41.7,285.3,117.4l98.5-99.5c-50-49.5-108.1-88.4-172.699-115.6
-                                    c-66.9-28.1-138-42.4-211.101-42.4c-73.6,0-145,14.4-212.3,42.9c-65,27.5-123.3,66.8-173.3,116.9l99,99
-                                    C175.5,309.299,277.3,267.1,385.6,267.1z"/>
-                                <polygon points="616.8,402.5 549.7,469.599 639.2,559.099 549.7,648.599 616.8,715.7 706.3,626.2 795.8,715.7 862.899,648.599
-                                    773.399,559.099 862.899,469.599 795.8,402.5 706.3,492 		"/>
-                            </g>
-                        </g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                        <g></g>
-                    </svg>
-                </div>
-            </div>
             <div class="modal-footer justify-content-center">
                 <button type="button" class="btn btn-primary btn-lg">Reconnect</button>
             </div>
@@ -98,103 +55,89 @@
 </div>
 <!-- ./ call modal -->
 
-<!-- add friends modal -->
+<!-- 添加好友对话框 -->
 <div class="modal fade" id="addFriends" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
-
     <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i class="ti-user"></i> 添加朋友
+                    <i class="ti-user"></i> 添加好友
                 </h5>
+
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="ti-close"></i>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="alert alert-info">向朋友发送邀请</div>
-                <form>
+                <form method="post" action="{% url 'add_friend' %}">
+                    {% csrf_token %}
                     <div class="form-group">
                         <label for="emails" class="col-form-label">邮箱地址</label>
-                        <input type="text" class="form-control" id="emails">
+                        <input type="text" class="form-control" id="emails" name="email">
                     </div>
                     <div class="form-group">
                         <label for="message" class="col-form-label">验证信息</label>
-                        <textarea class="form-control" id="message"></textarea>
+                        <textarea class="form-control" id="message" name="message"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit">发送好友请求</button>
                     </div>
                 </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Submit</button>
-            </div>
+            {#            <div class="modal-footer">#}
+            {#                <button type="button" class="btn btn-primary">发送</button>#}
+            {#            </div>#}
         </div>
     </div>
 </div>
-<!-- ./ add friends modal -->
 
-<!-- new group modal -->
-<div class="modal fade" id="newGroup" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!-- 新的好友对话框 -->
+<div class="modal fade" id="newFriendMenu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">
-                    <i class="fa fa-users"></i> 新建群
+                    <i class="ti-user"></i> 添加好友
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <i class="ti-close"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="group_name" class="col-form-label">群名</label>
-                        <input type="text" class="form-control" id="group_name">
-                    </div>
-                    <div class="form-group">
-                        <label for="users" class="col-form-label">Users</label>
-                        <input type="text" class="form-control" id="users" placeholder="Find user">
-                    </div>
-                    <div class="form-group">
-                        <div class="avatar-group">
-                            <figure class="avatar">
-                                <span class="avatar-title bg-success rounded-circle">E</span>
-                            </figure>
-                            <figure class="avatar">
-                                <img src="/static/media/img/women_avatar1.jpg" class="rounded-circle">
-                            </figure>
-                            <figure class="avatar">
-                                <span class="avatar-title bg-danger rounded-circle">S</span>
-                            </figure>
-                            <figure class="avatar">
-                                <img src="/static/media/img/man_avatar2.jpg" class="rounded-circle">
-                            </figure>
-                            <figure class="avatar">
-                                <span class="avatar-title bg-info rounded-circle">C</span>
-                            </figure>
-                            <a href="#">
-                                <figure class="avatar">
-                                    <span class="avatar-title bg-primary rounded-circle">+</span>
-                                </figure>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="description" class="col-form-label">描述</label>
-                        <textarea class="form-control" id="description"></textarea>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">创建群</button>
+
+                <!-- friend_requests.html -->
+                <h2>待处理的好友请求</h2>
+                <ul>
+                    {% for request_item in pending_requests %}
+                        <li>
+                            <strong>发送者:</strong> {{ request_item.get_from_user_username }}
+                            
+
+                            <img src="{{ request_item.get_from_user_avatar.url }}" alt="{{ request_item.get_from_user_username }}的头像"
+                                     width="64">
+                            <form method="post" action="{% url 'accept_friend' %}" >
+                                {% csrf_token %}
+                                 <input type="hidden" name="user_from_id" value="{{ request_item.user_from_id }}">  
+                                <input type="hidden" name="user_to_id" value="{{ request_item.user_to_id }}"> 
+                                <input type="submit" value="接受">
+                            </form>
+                            <form method="post" >
+                                {% csrf_token %}
+                                <input type="submit" value="拒绝">
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>
 </div>
-<!-- ./ new group modal -->
 
-<!-- edit profile modal -->
+
+<!-- 编辑个人信息 -->
 <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-zoom" role="document">
@@ -241,7 +184,7 @@
                                         <form form method="post" enctype="multipart/form-data">
                                             {% csrf_token %}
 
-                                            <input type="file" id="fileInput" name="fileInput" >
+                                            <input type="file" id="fileInput" name="fileInput">
                                             <button type="button" onclick="uploadFile()">上传文件</button>
                                         </form>
                                     </div>
@@ -283,7 +226,7 @@
         </div>
     </div>
 </div>
-<!-- ./ edit profile modal -->
+
 
 <!-- layout -->
 <div class="layout">
@@ -294,16 +237,14 @@
             <ul>
                 <li>
                     <a class="logo" href="#">
-{#                        <img src="/static/media/img/man_avatar3.jpg" id="myImage">#}
-                        {% load static %}  
-                         <!-- 显示用户头像 -->  
-                        {% if current_user.avatar %}
-                            <img src="{{ current_user.avatar.url }}" alt="User Avatar" class="avatar">  
-                        {% else %}  
-                            <img src="{% static '/media/img/default_avatar.png' %}" alt="Default Avatar" class="avatar">  
-                        {% endif %}  
-                                                
-                        
+                        {#                        <img src="/static/media/img/man_avatar3.jpg" id="myImage">#}
+                        {% load static %}
+                        <!-- 显示用户头像 -->
+{#                        <h1>Avatar value: {{ current_user.avatar }}</h1>  #}
+                            <img src="{{ current_user.avatar.url }}" alt="User Avatar" class="avatar">
+           
+{#                            <img src="{% static '/media/img/default_avatar.png' %}" alt="Default Avatar" class="avatar">#}
+      
                     </a>
                 </li>
                 <li>
@@ -360,11 +301,8 @@
                                             <i class="ti-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩文件</a>
-                                            <a href="#" class="dropdown-item">删除</a>
+                                            <a href="#" class="dropdown-item">发消息</a>
+                                            <a href="#" class="dropdown-item">删除好友</a>
                                         </div>
                                     </div>
                                 </div>
@@ -385,11 +323,8 @@
                                             <i class="ti-more"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item">打开</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">主页</a>
-                                            <a href="#" class="dropdown-item">添加到压缩文件</a>
-                                            <a href="#" class="dropdown-item">删除</a>
+                                            <a href="#" class="dropdown-item">发消息</a>
+                                            <a href="#" class="dropdown-item">删除好友</a>
                                         </div>
                                     </div>
                                 </div>
@@ -408,12 +343,12 @@
                     <ul class="list-inline">
                         <li class="list-inline-item">
                             <a class="btn btn-light" href="#" data-toggle="modal" data-target="#addFriends">
-                                <i class="ti-plus btn-icon"></i> 添加朋友
+                                <i class="ti-plus btn-icon"></i> 添加好友
                             </a>
                         </li>
-                        <li class="list-inline-item d-lg-none d-sm-block">
-                            <a href="#" class="btn btn-light sidebar-close">
-                                <i class="ti-close"></i>
+                        <li class="list-inline-item">
+                            <a class="btn btn-light" href="#" data-toggle="modal" data-target="#newFriendMenu">
+                                <i class="ti-menu btn-icon"></i> 新的好友
                             </a>
                         </li>
                     </ul>
@@ -438,8 +373,6 @@
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a href="#" class="dropdown-item">发消息</a>
-                                            <a href="#" data-navigation-target="contact-information"
-                                               class="dropdown-item">查看主页</a>
                                             <a href="#" class="dropdown-item">删除好友</a>
                                         </div>
                                     </div>
@@ -484,10 +417,7 @@
                                 <i class="ti-more"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <a href="#" data-navigation-target="contact-information"
-                                   class="dropdown-item">主页</a>
-                                <a href="#" class="dropdown-item">添加到压缩</a>
-                                <a href="#" class="dropdown-item">删除</a>
+                                <a href="#" class="dropdown-item">删除好友</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="#" class="dropdown-item">黑名单</a>
                             </div>
@@ -496,12 +426,6 @@
                 </div>
             </div>
             <div class="chat-body"> <!-- .no-message -->
-                <!--
-                <div class="no-message-container">
-                    <i class="fa fa-comments-o"></i>
-                    <p>Select a chat to read messages</p>
-                </div>
-                -->
                 <div class="messages">
                     <div class="message-item outgoing-message">
                         <div class="message-content">
@@ -598,174 +522,6 @@
         </div>
         <!-- ./ chat -->
 
-        <div class="sidebar-group">
-            <div id="contact-information" class="sidebar">
-                <header>
-                    <span>关于</span>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a href="#" class="btn btn-light sidebar-close">
-                                <i class="ti-close"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </header>
-                <div class="sidebar-body">
-                    <div class="pl-4 pr-4 text-center">
-                        <figure class="avatar avatar-state-danger avatar-xl mb-4">
-                            <img src="/static/media/img/women_avatar5.jpg" class="rounded-circle">
-                        </figure>
-                        <h5 class="text-primary">钱二</h5>
-                        <p class="text-muted">最后一次上线：今天</p>
-                    </div>
-                    <hr>
-                    <div class="pl-4 pr-4">
-                        <h6>关于</h6>
-                        <p class="text-muted">我喜欢阅读</p>
-                    </div>
-                    <hr>
-                    <div class="pl-4 pr-4">
-                        <h6>手机号</h6>
-                        <p class="text-muted">(555) 555 55 55</p>
-                    </div>
-                    <hr>
-                    <div class="pl-4 pr-4">
-                        <h6>媒体</h6>
-                        <div class="files">
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <figure class="avatar avatar-lg">
-                                        <span class="avatar-title bg-warning">
-                                            <i class="fa fa-file-pdf-o"></i>
-                                        </span>
-                                        </figure>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <figure class="avatar avatar-lg">
-                                            <img src="/static/media/img/women_avatar1.jpg">
-                                        </figure>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <figure class="avatar avatar-lg">
-                                            <img src="/static/media/img/women_avatar3.jpg">
-                                        </figure>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <figure class="avatar avatar-lg">
-                                            <img src="/static/media/img/women_avatar4.jpg">
-                                        </figure>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <figure class="avatar avatar-lg">
-                                        <span class="avatar-title bg-success">
-                                            <i class="fa fa-file-excel-o"></i>
-                                        </span>
-                                        </figure>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#">
-                                        <figure class="avatar avatar-lg">
-                                        <span class="avatar-title bg-info">
-                                            <i class="fa fa-file-text-o"></i>
-                                        </span>
-                                        </figure>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="pl-4 pr-4">
-                        <h6>城市</h6>
-                        <p class="text-muted">深圳</p>
-                    </div>
-                    <hr>
-                    <div class="pl-4 pr-4">
-                        <h6>网页</h6>
-                        <p>
-                            <a href="#">www.ctxpython.com</a>
-                        </p>
-                    </div>
-                    <hr>
-                    <div class="pl-4 pr-4">
-                        <h6>社交账号</h6>
-                        <ul class="list-inline social-links">
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-facebook">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-twitter">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-dribbble">
-                                    <i class="fa fa-dribbble"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-whatsapp">
-                                    <i class="fa fa-whatsapp"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-linkedin">
-                                    <i class="fa fa-linkedin"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-google">
-                                    <i class="fa fa-google"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-behance">
-                                    <i class="fa fa-behance"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#" class="btn btn-sm btn-floating btn-instagram">
-                                    <i class="fa fa-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <hr>
-                    <div class="pl-4 pr-4">
-                        <div class="form-group">
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch11">
-                                <label class="custom-control-label" for="customSwitch11">黑名单</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" checked="" id="customSwitch12">
-                                <label class="custom-control-label" for="customSwitch12">消息免打扰</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-item custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch13">
-                                <label class="custom-control-label" for="customSwitch13">接受通知</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
     <!-- ./ content -->

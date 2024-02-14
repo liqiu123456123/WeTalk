@@ -12,6 +12,7 @@ from django.core.mail import EmailMessage
 from django.http import JsonResponse
 from WeTalk.settings import MEDIA_ROOT
 from .models import MyUser
+from friendship.models import Friendship
 
 
 def upload_file(request):
@@ -81,7 +82,18 @@ def send_verification_code(request):
 @login_required
 def index(request):
     current_user = request.user
-    return render(request, "index.html", {'current_user': current_user})
+    print(current_user)
+    user = MyUser.objects.get(username=current_user)
+    user_id = user.id
+    pending_requests = Friendship.objects.filter(user_to_id=user_id, status='pending')
+    context = {'pending_requests': pending_requests, 'current_user': current_user}
+    return render(request, 'index.html', context)
+
+
+# @login_required
+# def index(request):
+#     current_user = request.user
+#     return render(request, "index.html", {'current_user': current_user})
 
 
 def user_login(request):
@@ -133,7 +145,7 @@ def register(request):
                     password=password,
                     email=email,
                     is_superuser=False,  # It's better to be explicit here
-                    is_staff=False  # Ditto
+                    is_staff=False,  # Ditto
                 )
                 tips = '注册成功，请登录'
                 logout(request)  # Logout the current user (if any)
