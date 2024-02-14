@@ -94,6 +94,8 @@ def index(request):
         Q(status='accept', user_from_id=current_user_id) |
         Q(status='accept', user_to_id=current_user_id)
     )
+    for friend in friends:
+        print(friend)
 
     context = {'pending_requests': pending_requests, 'current_user': current_user, 'friends': friends}
     return render(request, 'index.html', context)

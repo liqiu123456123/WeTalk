@@ -34,5 +34,11 @@ class Friendship(models.Model):
     def get_from_user_username(self):
         return self.user_from.username
 
+    def get_to_user_username(self):
+        return self.user_to.username
+
     def get_from_user_avatar(self):
         return self.user_from.avatar
+
+    def get_to_user_avatar(self):
+        return self.user_to.avatar
