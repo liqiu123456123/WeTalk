@@ -9,6 +9,22 @@ from django.db.models import F
 from django.utils import timezone
 from django.db.models import Case, Value, When, F
 from django.db import models
+from django.db.models import Q
+
+@login_required  # 确保用户已登录
+def show_friend(request):
+    if request.method == 'POST':
+        current_user_id = request.user.id
+
+        # 使用Django的Q对象来构建复杂的查询条件
+        friends = Friendship.objects.filter(
+            Q(status='accept', user_from_id=current_user_id) |
+            Q(status='accept', user_to_id=current_user_id)
+        )
+
+        context = {'friends': friends}
+        return render(request, 'index.html', context)
+
 @login_required  # 确保用户已登录
 def add_friend(request):
     if request.method == 'POST':
@@ -38,8 +54,6 @@ def accept_friend(request):
         to_id = request.POST.get('user_to_id')
         # 假设你要将status更新为'pending'
         new_status = 'accept'
-        print("form_id", from_id)
-        print("to_id", to_id)
         # 构建条件更新表达式
         condition = Case(
             When(date_accepted__isnull=False, then=F('date_accepted')),  # 如果date_accepted不为空，使用当前值
@@ -52,12 +66,7 @@ def accept_friend(request):
             status=new_status,
             date_accepted=condition
         )
-        # # 使用update方法来更新匹配的记录
-        # Friendship.objects.filter(user_to_id=to_id, user_from_id=from_id).update(status=new_status,
-        #                                                                          date_accepted=F('date_accepted') if F(
-        #                                                                              'date_accepted') is not None else timezone.now()
-        #                                                                          # 如果date_accepted已经设置，则保持不变，否则设置为当前时间
-        #                                                                          )
+
         return JsonResponse({'message': '同意'}, status=200)
 
 

@@ -85,8 +85,17 @@ def index(request):
     print(current_user)
     user = MyUser.objects.get(username=current_user)
     user_id = user.id
+    # 新好友请求
     pending_requests = Friendship.objects.filter(user_to_id=user_id, status='pending')
-    context = {'pending_requests': pending_requests, 'current_user': current_user}
+    # 联系人列表
+    current_user_id = request.user.id
+    # 使用Django的Q对象来构建复杂的查询条件
+    friends = Friendship.objects.filter(
+        Q(status='accept', user_from_id=current_user_id) |
+        Q(status='accept', user_to_id=current_user_id)
+    )
+
+    context = {'pending_requests': pending_requests, 'current_user': current_user, 'friends': friends}
     return render(request, 'index.html', context)
 
 
