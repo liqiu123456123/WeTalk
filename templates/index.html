@@ -294,7 +294,16 @@
             <ul>
                 <li>
                     <a class="logo" href="#">
-                        <img src="/static/media/img/man_avatar3.jpg" id="myImage">
+{#                        <img src="/static/media/img/man_avatar3.jpg" id="myImage">#}
+                        {% load static %}  
+                         <!-- 显示用户头像 -->  
+                        {% if current_user.avatar %}
+                            <img src="{{ current_user.avatar.url }}" alt="User Avatar" class="avatar">  
+                        {% else %}  
+                            <img src="{% static '/media/img/default_avatar.png' %}" alt="Default Avatar" class="avatar">  
+                        {% endif %}  
+                                                
+                        
                     </a>
                 </li>
                 <li>

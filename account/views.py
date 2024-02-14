@@ -13,6 +13,7 @@ from django.http import JsonResponse
 from WeTalk.settings import MEDIA_ROOT
 from .models import MyUser
 
+
 def upload_file(request):
     if request.method == "POST":
         # 或者使用 items() 方法同时获取键和值
@@ -25,7 +26,7 @@ def upload_file(request):
         my_user = MyUser.objects.get(username='liqile')
 
         # 更新 avatar 字段
-        my_user.avatar = file.name
+        my_user.avatar = os.path.join("avatars", file.name)
 
         # 保存对象
         my_user.save()
@@ -79,7 +80,8 @@ def send_verification_code(request):
 
 @login_required
 def index(request):
-    return render(request, "index.html")
+    current_user = request.user
+    return render(request, "index.html", {'current_user': current_user})
 
 
 def user_login(request):
