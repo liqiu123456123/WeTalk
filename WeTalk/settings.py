@@ -155,4 +155,5 @@ EMAIL_HOST_PASSWORD = 'fkixfgyvwooxbfib'
 EMAIL_UES_TLS = 'liqiu6789@qq.com'
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+os.environ['DJANGO_ALLOW_ASYNC_UNSAFE'] = 'true'   # 允许异步模式
 

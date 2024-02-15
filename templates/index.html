@@ -116,15 +116,16 @@
                             <strong>发送者:</strong> {{ request_item.get_from_user_username }}
 
 
-                            <img src="{{ request_item.get_from_user_avatar.url }}" alt="{{ request_item.get_from_user_username }}的头像"
-                                     width="64">
-                            <form method="post" action="{% url 'accept_friend' %}" >
+                            <img src="{{ request_item.get_from_user_avatar.url }}"
+                                 alt="{{ request_item.get_from_user_username }}的头像"
+                                 width="64">
+                            <form method="post" action="{% url 'accept_friend' %}">
                                 {% csrf_token %}
-                                 <input type="hidden" name="user_from_id" value="{{ request_item.user_from_id }}">
+                                <input type="hidden" name="user_from_id" value="{{ request_item.user_from_id }}">
                                 <input type="hidden" name="user_to_id" value="{{ request_item.user_to_id }}">
                                 <input type="submit" value="接受">
                             </form>
-                            <form method="post" >
+                            <form method="post">
                                 {% csrf_token %}
                                 <input type="submit" value="拒绝">
                             </form>
@@ -240,16 +241,11 @@
                         {#                        <img src="/static/media/img/man_avatar3.jpg" id="myImage">#}
                         {% load static %}
                         <!-- 显示用户头像 -->
-{#                        <h1>Avatar value: {{ current_user.avatar }}</h1>  #}
-                            <img src="{{ current_user.avatar.url }}" alt="User Avatar" class="avatar">
+                        {#                        <h1>Avatar value: {{ current_user.avatar }}</h1>  #}
+                        <img src="{{ current_user.avatar.url }}" alt="User Avatar" class="avatar">
 
-{#                            <img src="{% static '/media/img/default_avatar.png' %}" alt="Default Avatar" class="avatar">#}
+                        {#                            <img src="{% static '/media/img/default_avatar.png' %}" alt="Default Avatar" class="avatar">#}
 
-                    </a>
-                </li>
-                <li>
-                    <a data-navigation-target="chats" class="active" href="#">
-                        <i class="ti-comment-alt"></i>
                     </a>
                 </li>
                 <li>
@@ -272,51 +268,17 @@
     </nav>
     <!-- ./ navigation -->
 
-    <!-- content -->
+    <!-- 聊天列表 -->
     <div class="content">
 
         <!-- sidebar group -->
         <div class="sidebar-group">
 
-            <!-- Chats sidebar -->
-            <div id="chats" class="sidebar active">
-                <header>
-                    <span>聊天</span>
-                </header>
-                <form action="">
-                    <input type="text" class="form-control" placeholder="搜索聊天">
-                </form>
-                <div class="sidebar-body">
-                    <ul class="list-group list-group-flush" id="myList111">
-                        <li class="list-group-item open-chat" data-modal="modal123">
-                            <figure class="avatar">
-                                <img src="/static/media/img/man_avatar1.jpg" class="rounded-circle" data-modal="modal123">
-                            </figure>
-                            <div class="users-list-body">
-                                <h5 data-modal="modal123" >张三</h5>
-                                <p data-modal="modal123" >床前明月光</p>
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item" >发消息</a>
-                                            <a href="#" class="dropdown-item">删除好友</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- ./ Chats sidebar -->
 
             <!-- Friends sidebar -->
             <div id="friends" class="sidebar">
                 <header>
-                    <span>联系人</span>
+                    <span>好友</span>
                     <ul class="list-inline">
 
                         <li class="list-inline-item">
@@ -335,58 +297,58 @@
                     <input type="text" class="form-control" placeholder="搜索聊天">
                 </form>
                 <div class="sidebar-body">
-                    <ul class="list-group list-group-flush">
-                         {% for user in friends %}
-                        <li class="list-group-item">
-                            <div>
-                                <figure class="avatar">
+                    <ul class="list-group list-group-flush" id="myList111">
+                        {% for user in friends %}
+                            <li class="list-group-item" data-modal="modal123">
+                                <div>
+                                    <figure class="avatar">
+                                        {% if user.get_from_user_username == current_user.username %}
+
+                                            <img src="{{ user.get_to_user_avatar.url }}" data-modal="modal123"
+                                                 class="rounded-circle">
+
+                                        {% else %}
+                                            <img src="{{ user.get_from_user_avatar.url }}" data-modal="modal123"
+                                                 class="rounded-circle">
+                                        {% endif %}
+                                    </figure>
+                                </div>
+                                <div class="users-list-body">
                                     {% if user.get_from_user_username == current_user.username %}
-
-                                    <img src="{{ user.get_to_user_avatar.url }}" class="rounded-circle">
-
+                                        <h5 data-modal="modal123">{{ user.get_to_user_username }} </h5>
                                     {% else %}
-                                        <img src="{{ user.get_from_user_avatar.url }}" class="rounded-circle">
+                                        <h5 data-modal="modal123">{{ user.get_from_user_username }} </h5>
                                     {% endif %}
-                                </figure>
-                            </div>
-                            <div class="users-list-body">
-                                 {% if user.get_from_user_username == current_user.username %}
-                                <h5>{{ user.get_to_user_username }}</h5>
-                                {% else %}
-                                <h5>{{ user.get_from_user_username }}</h5>
-                                 {% endif %}
-                                <div class="users-list-action action-toggle">
-                                    <div class="dropdown">
-                                        <a data-toggle="dropdown" href="#">
-                                            <i class="ti-more"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item" data-navigation-target="chats">发消息</a>
-                                            <a href="#" class="dropdown-item">删除好友</a>
+                                    <div class="users-list-action action-toggle">
+                                        <div class="dropdown">
+                                            <a data-toggle="dropdown" href="#">
+                                                <i class="ti-more"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a href="#" class="dropdown-item"
+                                                   data-navigation-target="chats">发消息</a>
+                                                <a href="#" class="dropdown-item">删除好友</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-{% endfor %}
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
         </div>
         <!-- ./ sidebar group -->
 
-        <!-- chat -->
+        <!-- 聊天框 -->
         <div class="chat" id="modal123">
             <div class="chat-header">
                 <div class="chat-header-user">
                     <figure class="avatar avatar-lg">
-                        <img src="/static/media/img/man_avatar3.jpg" class="rounded-circle">
+                        <img id="img11111" src="/static/media/img/man_avatar3.jpg" class="rounded-circle">
                     </figure>
                     <div>
-                        <h5>钱一</h5>
-                        <small class="text-muted">
-                            <i>在线</i>
-                        </small>
+                        <h5 id="h511111">钱一</h5>
                     </div>
                 </div>
                 <div class="chat-header-action">
@@ -414,99 +376,55 @@
                     </ul>
                 </div>
             </div>
-            <div class="chat-body"> <!-- .no-message -->
+            <div class="chat-body" id ="chat_123"> <!-- .no-message -->
                 <div class="messages">
-                    <div class="message-item outgoing-message">
-                        <div class="message-content">
-                            你好，我在等你发文件给我
-                        </div>
-                        <div class="message-action">
-                            09:34 <i class="ti-double-check"></i>
-                        </div>
-                    </div>
-                    <div class="message-item">
-                        <div class="message-content">
-                            抱歉，现在我把文件发给你
-                        </div>
-                        <div class="message-action">
-                            14:20
-                        </div>
-                    </div>
-                    <div class="message-item outgoing-message">
-                        <div class="message-content">
-                            好的，谢谢
-                        </div>
-                        <div class="message-action">
-                            14:25 <i class="ti-double-check"></i>
-                        </div>
-                    </div>
-                    <div class="message-item">
-                        <div class="message-content">
-                            我现在发给你
-                        </div>
-                        <div class="message-action">
-                            14:20
-                        </div>
-                    </div>
-                    <div class="message-item">
-                        <div class="message-content message-file">
-                            <div class="file-icon">
-                                <i class="ti-file"></i>
+                    {% for message in messages %}
+                        <div class="message-item outgoing-message">
+                            <div class="message-content">
+                                {{ message.content }}
                             </div>
-                            <div>
-                                <div>文档.pdf <i class="text-muted small">(50KB)</i></div>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"><a href="#">下载</a></li>
-                                    <li class="list-inline-item"><a href="#">预览</a></li>
-                                </ul>
+                            <div class="message-action">
+                                {{ message.timestamp }}
                             </div>
                         </div>
-                        <div class="message-action">
-                            14:25
-                        </div>
-                    </div>
-                    <div class="message-item outgoing-message">
-                        <div class="message-content">
-                            非常感谢
-                        </div>
-                        <div class="message-action">
-                            14:50 <i title="Message could not be sent" class="ti-info-alt text-danger"></i>
-                        </div>
-                    </div>
-                    <div class="message-item">
-                        <div class="message-content">
-                            我等不及了
-                        </div>
-                        <div class="message-action">
-                            15:00
-                        </div>
-                    </div>
-                    <div class="message-item outgoing-message">
-                        <div class="message-content">
-                            我会尽快
-                        </div>
-                        <div class="message-action">
-                            14:50 <i class="ti-double-check"></i>
-                        </div>
-                    </div>
+                    {% endfor %}
+
                 </div>
             </div>
             <div class="chat-footer">
-                <form action="">
-                    <input type="text" class="form-control" placeholder="Recipient's username"
-                           aria-label="Recipient's username" aria-describedby="button-addon2">
-                    <div class="form-buttons">
-                        <button class="btn btn-light btn-floating" type="button">
-                            <i class="fa fa-paperclip"></i>
-                        </button>
-                        <button class="btn btn-light btn-floating" type="button">
-                            <i class="fa fa-microphone"></i>
-                        </button>
-                        <button class="btn btn-primary btn-floating" type="submit">
-                            <i class="fa fa-send"></i>
-                        </button>
-                    </div>
-                </form>
+
+
+                <input id="chat-message-input" type="text" class="form-control" placeholder="Recipient's username"
+                       aria-label="Recipient's username" aria-describedby="button-addon2">
+                <input id="chat-message-submit" type="button" value="Send">
+                <div class="form-buttons">
+                    <button class="btn btn-light btn-floating" type="button">
+                        <i class="fa fa-paperclip"></i>
+                    </button>
+                    <button class="btn btn-light btn-floating" type="button">
+                        <i class="fa fa-microphone"></i>
+                    </button>
+                    <button class="btn btn-primary btn-floating" type="submit">
+                        <i class="fa fa-send"></i>
+                    </button>
+                </div>
+
+
+                {#                <form action="">#}
+                {#                    <input type="text" class="form-control" placeholder="Recipient's username"#}
+                {#                           aria-label="Recipient's username" aria-describedby="button-addon2">#}
+                {#                    <div class="form-buttons">#}
+                {#                        <button class="btn btn-light btn-floating" type="button">#}
+                {#                            <i class="fa fa-paperclip"></i>#}
+                {#                        </button>#}
+                {#                        <button class="btn btn-light btn-floating" type="button">#}
+                {#                            <i class="fa fa-microphone"></i>#}
+                {#                        </button>#}
+                {#                        <button class="btn btn-primary btn-floating" type="submit">#}
+                {#                            <i class="fa fa-send"></i>#}
+                {#                        </button>#}
+                {#                    </div>#}
+                {#                </form>#}
             </div>
         </div>
         <!-- ./ chat -->
@@ -532,33 +450,263 @@
 
 <!-- Soho -->
 <script src="/static/js/soho.min.js"></script>
+
+
 <script>
-    document.getElementById('myList111').addEventListener('click', function(event) {  
-  var target = event.target;  
-  if (event.target.matches('.list-group-item') || event.target.closest('.list-group-item')) {  
-    var modalId = target.getAttribute('data-modal');  
-    console.log(modalId)
-    var modal = document.getElementById(modalId);  
-  
-    // 隐藏所有模态框  
-    document.querySelectorAll('.modal').forEach(function(modal) {  
-      modal.style.display = 'none';  
-    });  
-  
-    // 显示被点击的模态框  
-    if (modal) {  
-      modal.style.display = 'block';  
-    }  
-  }  
-});  
-  
-// 添加关闭模态框的功能  
-document.querySelectorAll('.close').forEach(function(closeBtn) {  
-  closeBtn.addEventListener('click', function() {  
-    var modal = this.parentElement.parentElement;  
-    modal.style.display = 'none';  
-  });  
-});
+    // 获取触发器元素
+    var refreshButton = document.getElementById('refresh-messages');
+
+    // 为触发器添加点击事件监听器
+    refreshButton.addEventListener('click', function () {
+        // 创建XMLHttpRequest对象
+        var xhr = new XMLHttpRequest();
+
+        // 定义请求成功时的回调函数
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // 解析服务器返回的JSON数据
+                var newMessages = JSON.parse(xhr.responseText);
+
+                // 清空现有的messages元素
+                var messagesContainer = document.querySelector('.messages');
+                messagesContainer.innerHTML = '';
+
+                // 使用新的消息列表更新页面
+                newMessages.forEach(function (message) {
+                    var messageItem = document.createElement('div');
+                    messageItem.className = 'message-item outgoing-message';
+
+                    var messageContent = document.createElement('div');
+                    messageContent.className = 'message-content';
+                    messageContent.textContent = message.content;
+
+                    var messageAction = document.createElement('div');
+                    messageAction.className = 'message-action';
+                    messageAction.textContent = message.timestamp;
+
+                    var checkIcon = document.createElement('i');
+                    checkIcon.className = 'ti-double-check';
+
+                    messageAction.appendChild(checkIcon);
+                    messageItem.appendChild(messageContent);
+                    messageItem.appendChild(messageAction);
+
+                    messagesContainer.appendChild(messageItem);
+                });
+            }
+        };
+
+        // 发送AJAX请求
+        xhr.open('GET', '/path/to/your/messages/api/', true);
+        xhr.send();
+    });
+</script>
+
+
+<script>  <!-- 开始JavaScript脚本 -->
+// 解析从模板传递过来的房间名称JSON数据
+{#const roomName = JSON.parse(document.getElementById('room-name').textContent);#}
+const roomName = "123"
+// 创建一个WebSocket连接，连接到服务器上的聊天室WebSocket端点
+const chatSocket = new WebSocket(
+    'ws://'  // WebSocket协议
+    + window.location.host  // 当前页面的主机和端口
+    + '/ws/chat/'  // WebSocket端点的路径前缀
+    + roomName  // 房间名称，作为路径的一部分
+    + '/'  // 路径结束
+);
+
+// 当收到WebSocket消息时，执行以下函数
+chatSocket.onmessage = function (e) {
+    // 解析收到的JSON格式的消息数据
+    const data = JSON.parse(e.data);
+    // 将收到的消息添加到聊天日志文本框中，并换行
+    document.querySelector('#chat-log').value += (data.message + '\n');
+};
+
+// 当WebSocket连接关闭时，打印错误信息到控制台
+chatSocket.onclose = function (e) {
+    console.error('Chat socket closed unexpectedly');
+};
+
+// 当页面加载时，将焦点自动设置到消息输入框
+document.querySelector('#chat-message-input').focus();
+
+// 当用户在消息输入框中按下键盘上的键时，执行以下函数
+document.querySelector('#chat-message-input').onkeyup = function (e) {
+    // 检查按下的键是否是回车键
+    if (e.key === 'Enter') {
+        // 如果是回车键，则模拟点击"Send"按钮
+        document.querySelector('#chat-message-submit').click();
+    }
+};
+
+// 当用户点击"Send"按钮时，执行以下函数
+document.querySelector('#chat-message-submit').onclick = function (e) {
+    // 获取输入框中的消息内容
+    const messageInputDom = document.querySelector('#chat-message-input');
+    const message = messageInputDom.value;
+    console.log(message)
+    var sender_username = "{{ current_user.username|escapejs }}";
+    var receiver_username = document.getElementById('h511111').innerText;
+    // 通过WebSocket发送消息到服务器
+    chatSocket.send(JSON.stringify({
+        'message': message,  // 消息内容作为JSON对象的一部分发送
+        'sender_username': sender_username,
+        'receiver_username': receiver_username,
+    }));
+    // 清空输入框，以便输入下一条消息
+    messageInputDom.value = '';
+
+
+    var url = 'chat/history/' + encodeURIComponent(sender_username) + '/' + encodeURIComponent(receiver_username);
+
+    // 创建XMLHttpRequest对象  
+    var xhr = new XMLHttpRequest();
+    // 打开请求  
+    xhr.open('GET', url, true);
+    // 设置请求完成后的回调函数  
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // 请求成功，处理响应  
+            console.log(xhr.responseText);
+            // 解析JSON文本为JavaScript对象数组  
+            const messages = JSON.parse(xhr.responseText);
+
+// 获取包含消息的div元素  
+            const messagesDiv = document.querySelector('.messages');
+
+// 清空messagesDiv的内容  
+            messagesDiv.innerHTML = '';
+
+// 遍历消息数组  
+            messages.forEach(message => {
+                // 创建新的消息项div  
+                const messageItemDiv = document.createElement('div');
+                messageItemDiv.className = 'message-item outgoing-message';
+
+                // 创建消息内容div  
+                const messageContentDiv = document.createElement('div');
+                messageContentDiv.className = 'message-content';
+                messageContentDiv.textContent = message.content; // 设置文本内容  
+
+                // 创建消息动作div  
+                const messageActionDiv = document.createElement('div');
+                messageActionDiv.className = 'message-action';
+                messageActionDiv.textContent = message.timestamp; // 设置文本内容  
+
+                // 将消息内容和动作div添加到消息项div中  
+                messageItemDiv.appendChild(messageContentDiv);
+                messageItemDiv.appendChild(messageActionDiv);
+
+                // 将消息项div添加到messagesDiv中  
+                messagesDiv.appendChild(messageItemDiv);
+            });
+
+
+        } else {
+            // 请求失败，处理错误  
+            console.error('Request failed. Status:', xhr.status);
+        }
+    };
+
+    // 发送请求  
+    xhr.send();
+};
+</script>
+
+<script>
+    document.getElementById('myList111').addEventListener('click', function (event) {
+        var target = event.target;
+        if (event.target.matches('.list-group-item') || event.target.closest('.list-group-item')) {
+            var modalId = target.getAttribute('data-modal');
+            var $li = $(this); // 获取被点击的 li 标签的 jQuery 对象
+            var h5Text = $li.find('h5').text(); // 获取 <h5> 标签的文本内容
+            var imgSrc = $li.find('img').attr('src'); // 获取 <img> 标签的 src 属性
+            var modal = document.getElementById(modalId);
+
+            // 隐藏所有模态框
+            document.querySelectorAll('.modal').forEach(function (modal) {
+                modal.style.display = 'none';
+            });
+
+            // 显示被点击的模态框
+            if (modal) {
+                modal.style.display = 'flex';
+                var chatElement = document.getElementById('chat_123'); 
+                if (chatElement) {  
+    chatElement.style.display = 'flex';  
+}
+                // 假设modal是一个已经获取到的DOM元素
+                var modalH5 = document.getElementById('h511111');
+                var modalimg = document.getElementById('img11111');
+                modalH5.textContent = h5Text
+
+                modalimg.src = imgSrc;
+                var sender_username = "{{ current_user.username|escapejs }}";
+    var receiver_username = document.getElementById('h511111').innerText;
+    // 清空输入框，以便输入下一条消息
+    var url = 'chat/history/' + encodeURIComponent(sender_username) + '/' + encodeURIComponent(receiver_username);
+
+    // 创建XMLHttpRequest对象  
+    var xhr = new XMLHttpRequest();
+    // 打开请求  
+    xhr.open('GET', url, true);
+    // 设置请求完成后的回调函数  
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // 请求成功，处理响应  
+            console.log(xhr.responseText);
+            // 解析JSON文本为JavaScript对象数组  
+            const messages = JSON.parse(xhr.responseText);
+
+// 获取包含消息的div元素  
+            const messagesDiv = document.querySelector('.messages');
+
+// 清空messagesDiv的内容  
+            messagesDiv.innerHTML = '';
+
+// 遍历消息数组  
+            messages.forEach(message => {
+                // 创建新的消息项div  
+                const messageItemDiv = document.createElement('div');
+                messageItemDiv.className = 'message-item outgoing-message';
+
+                // 创建消息内容div  
+                const messageContentDiv = document.createElement('div');
+                messageContentDiv.className = 'message-content';
+                messageContentDiv.textContent = message.content; // 设置文本内容  
+
+                // 创建消息动作div  
+                const messageActionDiv = document.createElement('div');
+                messageActionDiv.className = 'message-action';
+                messageActionDiv.textContent = message.timestamp; // 设置文本内容  
+
+                // 将消息内容和动作div添加到消息项div中  
+                messageItemDiv.appendChild(messageContentDiv);
+                messageItemDiv.appendChild(messageActionDiv);
+
+                // 将消息项div添加到messagesDiv中  
+                messagesDiv.appendChild(messageItemDiv);
+            });
+
+
+        } else {
+            // 请求失败，处理错误  
+            console.error('Request failed. Status:', xhr.status);
+        }
+    };
+
+    // 发送请求  
+    xhr.send();
+
+
+            }
+
+
+        }
+    });
+
 </script>
 <script>
     function uploadFile() {

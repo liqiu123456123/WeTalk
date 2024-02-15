@@ -94,10 +94,18 @@ def index(request):
         Q(status='accept', user_from_id=current_user_id) |
         Q(status='accept', user_to_id=current_user_id)
     )
-    for friend in friends:
-        print(friend)
+    messages = [
+        {
+            'content': '你好，我在等你发文件给我',
+            'timestamp': '09:34'
+        },
+        {
+            'content': '抱歉，现在我把文件发给你',
+            'timestamp': '14:20'
+        }
+    ]
 
-    context = {'pending_requests': pending_requests, 'current_user': current_user, 'friends': friends}
+    context = {'pending_requests': pending_requests, 'current_user': current_user, 'friends': friends,'messages': messages}
     return render(request, 'index.html', context)
 
 

@@ -54,6 +54,7 @@
             // 获取输入框中的消息内容
             const messageInputDom = document.querySelector('#chat-message-input');
             const message = messageInputDom.value;
+            console.log(message)
             // 通过WebSocket发送消息到服务器
             chatSocket.send(JSON.stringify({
                 'message': message  // 消息内容作为JSON对象的一部分发送
