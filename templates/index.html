@@ -376,7 +376,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="chat-body" id ="chat_123"> <!-- .no-message -->
+            <div class="chat-body" id="chat_123"> <!-- .no-message -->
                 <div class="messages">
                     {% for message in messages %}
                         <div class="message-item outgoing-message">
@@ -410,21 +410,6 @@
                 </div>
 
 
-                {#                <form action="">#}
-                {#                    <input type="text" class="form-control" placeholder="Recipient's username"#}
-                {#                           aria-label="Recipient's username" aria-describedby="button-addon2">#}
-                {#                    <div class="form-buttons">#}
-                {#                        <button class="btn btn-light btn-floating" type="button">#}
-                {#                            <i class="fa fa-paperclip"></i>#}
-                {#                        </button>#}
-                {#                        <button class="btn btn-light btn-floating" type="button">#}
-                {#                            <i class="fa fa-microphone"></i>#}
-                {#                        </button>#}
-                {#                        <button class="btn btn-primary btn-floating" type="submit">#}
-                {#                            <i class="fa fa-send"></i>#}
-                {#                        </button>#}
-                {#                    </div>#}
-                {#                </form>#}
             </div>
         </div>
         <!-- ./ chat -->
@@ -435,6 +420,49 @@
 
 </div>
 <!-- ./ layout -->
+{## 监听#}
+<script>
+
+    const ws = new WebSocket(
+        'ws://'  // WebSocket协议
+        + window.location.host  // 当前页面的主机和端口
+        + '/ws/chat/'  // WebSocket端点的路径前缀
+        + '123'  // 房间名称，作为路径的一部分
+        + '/'  // 路径结束
+    );
+    window.onload = function () {
+        ws.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            // 在这里，你可以更新DOM以显示新消息
+            var sender_username = data.sender_username
+            var receiver_username = data.receiver_username
+
+            var messagesContainer = document.querySelector('.messages');
+            var messageItem = document.createElement('div');
+
+            messageItem.className = 'message-item outgoing-message';
+            var messageContent = document.createElement('div');
+            messageContent.className = 'message-content';
+            messageContent.textContent = data.message;
+            var messageAction = document.createElement('div');
+            messageAction.className = 'message-action';
+            messageAction.textContent = "message.timestamp";
+            messageItem.appendChild(messageContent);
+            messageItem.appendChild(messageAction);
+            messagesContainer.appendChild(messageItem);
+            console.log(data.message)
+            var chatElement = document.getElementById('chat_123');  
+    if (chatElement) {  
+        chatElement.scrollTop = chatElement.scrollHeight;  
+    }  
+            
+
+        };
+    };
+
+
+</script>
+
 
 <!-- JQuery -->
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
@@ -444,9 +472,6 @@
 
 <!-- Bootstrap -->
 <script src="/static/js/bootstrap.min.js"></script>
-
-<!-- Nicescroll -->
-<script src="/static/js/jquery.nicescroll.min.js"></script>
 
 <!-- Soho -->
 <script src="/static/js/soho.min.js"></script>
@@ -490,7 +515,6 @@
                     messageAction.appendChild(checkIcon);
                     messageItem.appendChild(messageContent);
                     messageItem.appendChild(messageAction);
-
                     messagesContainer.appendChild(messageItem);
                 });
             }
@@ -502,7 +526,7 @@
     });
 </script>
 
-
+{## 发送消息#}
 <script>  <!-- 开始JavaScript脚本 -->
 // 解析从模板传递过来的房间名称JSON数据
 {#const roomName = JSON.parse(document.getElementById('room-name').textContent);#}
@@ -516,13 +540,6 @@ const chatSocket = new WebSocket(
     + '/'  // 路径结束
 );
 
-// 当收到WebSocket消息时，执行以下函数
-chatSocket.onmessage = function (e) {
-    // 解析收到的JSON格式的消息数据
-    const data = JSON.parse(e.data);
-    // 将收到的消息添加到聊天日志文本框中，并换行
-    document.querySelector('#chat-log').value += (data.message + '\n');
-};
 
 // 当WebSocket连接关闭时，打印错误信息到控制台
 chatSocket.onclose = function (e) {
@@ -546,6 +563,7 @@ document.querySelector('#chat-message-submit').onclick = function (e) {
     // 获取输入框中的消息内容
     const messageInputDom = document.querySelector('#chat-message-input');
     const message = messageInputDom.value;
+    messageInputDom.value = '';  
     console.log(message)
     var sender_username = "{{ current_user.username|escapejs }}";
     var receiver_username = document.getElementById('h511111').innerText;
@@ -555,66 +573,13 @@ document.querySelector('#chat-message-submit').onclick = function (e) {
         'sender_username': sender_username,
         'receiver_username': receiver_username,
     }));
-    // 清空输入框，以便输入下一条消息
-    messageInputDom.value = '';
-
-
-    var url = 'chat/history/' + encodeURIComponent(sender_username) + '/' + encodeURIComponent(receiver_username);
-
-    // 创建XMLHttpRequest对象  
-    var xhr = new XMLHttpRequest();
-    // 打开请求  
-    xhr.open('GET', url, true);
-    // 设置请求完成后的回调函数  
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // 请求成功，处理响应  
-            console.log(xhr.responseText);
-            // 解析JSON文本为JavaScript对象数组  
-            const messages = JSON.parse(xhr.responseText);
-
-// 获取包含消息的div元素  
-            const messagesDiv = document.querySelector('.messages');
-
-// 清空messagesDiv的内容  
-            messagesDiv.innerHTML = '';
-
-// 遍历消息数组  
-            messages.forEach(message => {
-                // 创建新的消息项div  
-                const messageItemDiv = document.createElement('div');
-                messageItemDiv.className = 'message-item outgoing-message';
-
-                // 创建消息内容div  
-                const messageContentDiv = document.createElement('div');
-                messageContentDiv.className = 'message-content';
-                messageContentDiv.textContent = message.content; // 设置文本内容  
-
-                // 创建消息动作div  
-                const messageActionDiv = document.createElement('div');
-                messageActionDiv.className = 'message-action';
-                messageActionDiv.textContent = message.timestamp; // 设置文本内容  
-
-                // 将消息内容和动作div添加到消息项div中  
-                messageItemDiv.appendChild(messageContentDiv);
-                messageItemDiv.appendChild(messageActionDiv);
-
-                // 将消息项div添加到messagesDiv中  
-                messagesDiv.appendChild(messageItemDiv);
-            });
-
-
-        } else {
-            // 请求失败，处理错误  
-            console.error('Request failed. Status:', xhr.status);
-        }
-    };
-
-    // 发送请求  
-    xhr.send();
+    // 发送请求
+    var chatElement = document.getElementById('chat_123');
+    chatElement.scrollTop = chatElement.scrollHeight;
 };
 </script>
 
+{#打开对话框#}
 <script>
     document.getElementById('myList111').addEventListener('click', function (event) {
         var target = event.target;
@@ -633,10 +598,14 @@ document.querySelector('#chat-message-submit').onclick = function (e) {
             // 显示被点击的模态框
             if (modal) {
                 modal.style.display = 'flex';
-                var chatElement = document.getElementById('chat_123'); 
-                if (chatElement) {  
-    chatElement.style.display = 'flex';  
-}
+                var chatElement = document.getElementById('chat_123');
+                if (chatElement) {
+                    chatElement.style.display = 'flex';
+                    chatElement.style.overflow = 'auto';
+                    // 延迟执行，确保DOM更新和其他操作已经完成
+
+
+                }
                 // 假设modal是一个已经获取到的DOM元素
                 var modalH5 = document.getElementById('h511111');
                 var modalimg = document.getElementById('img11111');
@@ -644,61 +613,61 @@ document.querySelector('#chat-message-submit').onclick = function (e) {
 
                 modalimg.src = imgSrc;
                 var sender_username = "{{ current_user.username|escapejs }}";
-    var receiver_username = document.getElementById('h511111').innerText;
-    // 清空输入框，以便输入下一条消息
-    var url = 'chat/history/' + encodeURIComponent(sender_username) + '/' + encodeURIComponent(receiver_username);
+                var receiver_username = document.getElementById('h511111').innerText;
+                // 清空输入框，以便输入下一条消息
+                var url = 'chat/history/' + encodeURIComponent(sender_username) + '/' + encodeURIComponent(receiver_username);
 
-    // 创建XMLHttpRequest对象  
-    var xhr = new XMLHttpRequest();
-    // 打开请求  
-    xhr.open('GET', url, true);
-    // 设置请求完成后的回调函数  
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // 请求成功，处理响应  
-            console.log(xhr.responseText);
-            // 解析JSON文本为JavaScript对象数组  
-            const messages = JSON.parse(xhr.responseText);
+                // 创建XMLHttpRequest对象  
+                var xhr = new XMLHttpRequest();
+                // 打开请求  
+                xhr.open('GET', url, true);
+                // 设置请求完成后的回调函数  
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // 请求成功，处理响应  
+                        console.log(xhr.responseText);
+                        // 解析JSON文本为JavaScript对象数组  
+                        const messages = JSON.parse(xhr.responseText);
 
 // 获取包含消息的div元素  
-            const messagesDiv = document.querySelector('.messages');
+                        const messagesDiv = document.querySelector('.messages');
 
 // 清空messagesDiv的内容  
-            messagesDiv.innerHTML = '';
+                        messagesDiv.innerHTML = '';
 
 // 遍历消息数组  
-            messages.forEach(message => {
-                // 创建新的消息项div  
-                const messageItemDiv = document.createElement('div');
-                messageItemDiv.className = 'message-item outgoing-message';
+                        messages.forEach(message => {
+                            // 创建新的消息项div  
+                            const messageItemDiv = document.createElement('div');
+                            messageItemDiv.className = 'message-item outgoing-message';
 
-                // 创建消息内容div  
-                const messageContentDiv = document.createElement('div');
-                messageContentDiv.className = 'message-content';
-                messageContentDiv.textContent = message.content; // 设置文本内容  
+                            // 创建消息内容div  
+                            const messageContentDiv = document.createElement('div');
+                            messageContentDiv.className = 'message-content';
+                            messageContentDiv.textContent = message.content; // 设置文本内容  
 
-                // 创建消息动作div  
-                const messageActionDiv = document.createElement('div');
-                messageActionDiv.className = 'message-action';
-                messageActionDiv.textContent = message.timestamp; // 设置文本内容  
+                            // 创建消息动作div  
+                            const messageActionDiv = document.createElement('div');
+                            messageActionDiv.className = 'message-action';
+                            messageActionDiv.textContent = message.timestamp; // 设置文本内容  
 
-                // 将消息内容和动作div添加到消息项div中  
-                messageItemDiv.appendChild(messageContentDiv);
-                messageItemDiv.appendChild(messageActionDiv);
+                            // 将消息内容和动作div添加到消息项div中  
+                            messageItemDiv.appendChild(messageContentDiv);
+                            messageItemDiv.appendChild(messageActionDiv);
 
-                // 将消息项div添加到messagesDiv中  
-                messagesDiv.appendChild(messageItemDiv);
-            });
+                            // 将消息项div添加到messagesDiv中  
+                            messagesDiv.appendChild(messageItemDiv);
+                        });
+                        chatElement.scrollTop = chatElement.scrollHeight;
 
+                    } else {
+                        // 请求失败，处理错误  
+                        console.error('Request failed. Status:', xhr.status);
+                    }
+                };
 
-        } else {
-            // 请求失败，处理错误  
-            console.error('Request failed. Status:', xhr.status);
-        }
-    };
-
-    // 发送请求  
-    xhr.send();
+                // 发送请求  
+                xhr.send();
 
 
             }

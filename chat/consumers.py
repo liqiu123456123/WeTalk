@@ -78,6 +78,8 @@ import json  # 导入json库，用于处理JSON数据
 from channels.generic.websocket import AsyncWebsocketConsumer  # 导入异步WebSocket消费者基类
 from .models import ChatMessage
 from account.models import MyUser
+from datetime import datetime
+
 
 # 定义一个名为ChatConsumer的类，它继承自AsyncWebsocketConsumer
 class ChatConsumer(AsyncWebsocketConsumer):
@@ -125,8 +127,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                                    receiver_id=receiver_id)  # 假设ChatMessage有一个content字段
         chat_message.save()  # 保存消息到数据库
         # 将消息发送到房间组，这样所有在该房间组中的WebSocket连接都可以接收到这个消息
+        # 获取当前时间
         await self.channel_layer.group_send(
-            self.room_group_name, {"type": "chat.message", "message": message}
+            self.room_group_name,
+            {"type": "chat.message", "message": message, "sender_username": sender_username, "receiver_username": receiver_username}
         )
 
         # 当从房间组接收到消息时调用的异步方法
@@ -134,6 +138,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def chat_message(self, event):
         # 从事件中提取消息内容
         message = event["message"]
-
+        sender_username = event["sender_username"]
+        receiver_username = event["receiver_username"]
+        print(event)
         # 将消息发送到WebSocket连接
-        await self.send(text_data=json.dumps({"message": message}))
+        await self.send(text_data=json.dumps({"message": message, "sender_username": sender_username, "receiver_username": receiver_username}))
