@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Camera Capture with WebSocket</title>
+    <style>
+        #video-container, #remote-video-container {
+            width: 48%;
+            display: inline-block;
+            vertical-align: top;
+        }
+        video {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video autoplay playsinline muted id="local-video"></video>
+    </div>
+    <div id="remote-video-container">
+        <video autoplay playsinline id="remote-video"></video>
+    </div>
+
+    <script>
+        // WebSocket连接
+        const socket = new WebSocket(
+        'ws://'  // WebSocket协议
+        + "127.0.0.1:8000"  // 当前页面的主机和端口
+        + '/ws/chat/'  // WebSocket端点的路径前缀
+        + '123'  // 房间名称，作为路径的一部分
+        + '/'  // 路径结束
+    );
+
+        // 本地视频流
+        const localVideo = document.getElementById('local-video');
+        const remoteVideo = document.getElementById('remote-video');
+
+        // 捕获摄像头视频流
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                localVideo.srcObject = stream;
+
+                // 发送视频流到服务器
+                const videoDataURL = getVideoAsDataURL(localVideo);
+                socket.send(videoDataURL);
+            })
+            .catch(err => {
+                console.error('Error capturing video:', err);
+            });
+
+        // 处理从服务器接收到的视频流
+        socket.onmessage = event => {
+            const videoDataURL = event.data;
+            const videoBlob = fetchBlobFromDataURL(videoDataURL);
+            const videoURL = URL.createObjectURL(videoBlob);
+            remoteVideo.src = videoURL;
+        };
+
+        // 将视频转换为DataURL
+        function getVideoAsDataURL(video) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(video.captureStream());
+            });
+        }
+
+        // 从DataURL获取Blob
+        function fetchBlobFromDataURL(dataUrl) {
+            const parts = dataUrl.split(';base64,');
+            const contentType = parts[0].split(':')[1];
+            const raw = window.atob(parts[1]);
+            const rawLength = raw.length;
+            const uInt8Array = new Uint8Array(rawLength);
+
+            for (let i = 0; i < rawLength; ++i) {
+                uInt8Array[i] = raw.charCodeAt(i);
+            }
+
+            return new Blob([uInt8Array], { type: contentType });
+        }
+    </script>
+</body>
+</html>

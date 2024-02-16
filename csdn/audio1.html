@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Web Audio API 测试</title>
+
+	</head>
+	<body>
+		<table>
+			<tr>
+				<td>参数:</td>
+				<td><input style="width: 390px;" type="text" name="type" id="type"></td>
+				<td>
+					<button onclick="onSendMessage()">发送消息</button>
+				</td>
+				<td>
+					<button onclick="onCloseMessage()">断开连接</button>
+				</td>
+			</tr>
+          <audio id="video"></audio>
+		</table>
+
+	</body>
+
+	<script>
+
+/***
+    navigator.mediaDevices.getUserMedia({video: 1, audio: 1})
+    .then(function(stream) {
+
+    })***/
+
+const socket = new WebSocket('ws://192.168.60.105:8765');
+
+		//播放声音
+
+// 连接成功
+socket.addEventListener('open', function (event) {
+    //socket.send('123')
+});
+
+     const audioCtx = new AudioContext();
+
+//websocket接收到数据
+socket.onmessage = function (event) {
+console.log(event.data);
+            var reader = new FileReader(); //文件阅读器
+			reader.readAsArrayBuffer(event.data); //读取成ArrayBuffer对象
+			reader.onload = function() { //读取完毕
+				//解码
+				var a= new  Int16Array(this.result);//Int32Array
+               //console.log(a)
+
+// 创建音频缓存对象
+const noiseBuffer = new AudioBuffer({
+  length: a.length/2,//长度
+  sampleRate: 44100,//采样率
+  numberOfChannels:2,//通道数
+});
+
+// 创建一个空缓冲区
+const data = noiseBuffer.getChannelData(0);//获取轨道数据,这里是左声道
+const data2 = noiseBuffer.getChannelData(1);//获取轨道数据,这里是右声道
+//填充data
+var c=[]
+
+for (let i = 0; i < a.length; i=i+2) {
+  data[i-Math.floor(i*0.5)] = a[i]/30000;
+  data2[i-Math.floor(i*0.5)]=a[i+1]/30000;//data[i];
+ // c.push(a[i]/9184)
+
+}
+console.log(noiseBuffer.getChannelData(0))
+console.log(noiseBuffer.getChannelData(1))
+// 创建音频流对象
+const noise = new AudioBufferSourceNode(audioCtx, {
+  buffer: noiseBuffer
+});
+
+noise.connect(audioCtx.destination);
+
+noise.start();
+socket.send('111');
+			}
+
+}
+
+
+		//发送消息
+		function onSendMessage() {
+
+			var mess = document.getElementById("type").value;
+			socket.send(mess);
+		}
+//这里只是播放电脑的麦克风，为什么不把网页端传麦克风到python写在一起，是为了增加难度哈哈，自己慢慢处理，自己融合吧，嘿嘿
+	</script>
+</html>
+

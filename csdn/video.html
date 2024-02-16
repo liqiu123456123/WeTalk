@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>视频测试</title>
+</head>
+<body>
+
+<video id="video" src=""></video> <!-- 视频元素 -->
+<canvas id="canvas"></canvas> <!-- 画布元素 -->
+</body>
+<script>
+    //媒体对象
+    var video = document.getElementById('video') // 获取视频元素
+    var canvas = document.getElementById('canvas') // 获取画布元素
+    canvas.width = 800; // 设置画布宽度
+    canvas.height = 600; // 设置画布高度
+
+    const mediaStreamConstraints = {
+        video: true,
+        audio: false,
+        video: {
+            width: 800,
+            height: 600,
+            facingMode: "environment"
+        }
+    };
+
+    function gotLocalMediaStream(mediaStream) {
+        video.srcObject = mediaStream // 将视频对象连接到媒体流
+        video.play(); // 播放视频
+    }
+
+    // 创建 WebSocket 连接
+    const socket = new WebSocket(
+        'ws://'  // WebSocket协议
+        + "192.168.60.105:8000"  // 当前页面的主机和端口
+        + '/ws/chat/'  // WebSocket端点的路径前缀
+        + '123'  // 房间名称，作为路径的一部分
+        + '/'  // 路径结束
+    );
+
+    // 连接已打开
+    socket.addEventListener('open', function (event) {
+    });
+
+    // 监听消息
+    socket.addEventListener('message', function (event) {
+        console.log('Message from server ', event.data); // 打印来自服务器的消息
+    });
+    navigator.mediaDevices.getUserMedia(mediaStreamConstraints).then(gotLocalMediaStream).catch();
+
+    var context = canvas.getContext("2d"); // 创建2D绘图对象
+    // 生成唯一标识的函数
+    function generateUniqueId() {
+        // 使用时间戳确保唯一性，并结合随机数来避免在同一毫秒内生成相同的ID
+        return 'uid_' + Date.now() + '_' + Math.round(Math.random() * 1000000);
+    }
+
+    // ... 其他代码保持不变
+
+    // 生成唯一标识
+    let uniqueId = generateUniqueId();
+    setInterval(function () { // 设置计时器
+        var co = context.drawImage(video, 0, 0); // 在画布上绘制视频图像
+        //console.log(co)
+        img = context.getImageData(0, 0, 400, 300) // 获取图像数据
+        data = img.data // 获取图像数据
+        context.putImageData(img, 0, 0)
+
+        im = canvas.toDataURL("image/jpe") // 将画布内容转换为图像地址
+
+if (socket.readyState === WebSocket.OPEN) {
+    socket.send(JSON.stringify({ image: im, id: uniqueId }));
+}
+    }, 43)
+
+
+    //赋值粘贴即可用不懂的地方自己慢慢百度。注意ip地址填对，或者填本地。
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>音量</title>
+    <style>
+
+
+
+    </style>
+</head>
+<body>
+<div id="status">预备开始</div>
+<audio id="video" src=""></audio>
+<a onclick='aa()'>开始</a> <a onclick='bb()'>结束</a>
+<script type="text/javascript">
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // 获取用户的 media 信息
+             navigator.mediaDevices.getUserMedia({
+	video: false,
+    audio: {
+        sampleRate: 44100, // 采样率
+        channelCount: 2,   // 声道
+        volume: 1.0,        // 音量
+		sampleBits:16
+		}
+    }).then((stream) => {
+	var audioContext= new AudioContext();
+	const socket = new WebSocket('ws://192.168.60.105:8765');
+                // 将麦克风的声音输入这个对象
+                mediaStreamSource = audioContext.createMediaStreamSource(stream);
+                // 创建一个音频分析对象，采样的缓冲区大小为4096，输入和输出都是单声道
+                scriptProcessor = audioContext.createScriptProcessor(4096,2,2);
+                // 将该分析对象与麦克风音频进行连接
+                mediaStreamSource.connect(scriptProcessor);
+                // 此举无甚效果，仅仅是因为解决 Chrome 自身的 bug
+                scriptProcessor.connect(audioContext.destination);
+				//scriptProcessor.start();
+                // 开始处理音频
+
+				var c=[]
+				var i2=0;
+                scriptProcessor.onaudioprocess = function(e) {
+                    // 获得缓冲区的输入音频，转换为包含了PCM通道数据的32位浮点数组
+                    let buffer = e.inputBuffer.getChannelData(0);
+                    let buffer1 = e.inputBuffer.getChannelData(1);
+					var v = new Int16Array(buffer.length*2)//Int32Array(buffer.length*2);
+					for (var i=0;i<buffer.length;i++){
+					v[i2]=Math.trunc(buffer[i]*30000);
+					i2++;
+					v[i2]=Math.trunc(buffer1[i]*30000);
+					i2++;
+                    //v[i+1]=Math.trunc(buffer1[Math.floor(i/2)]*30000);
+					}
+					i2=0
+
+					//c.push(v)
+				//b= new Int16Array(v)
+					console.log(c.length,v)
+					socket.send(v)
+					//if (c.length>10){socket.send(c);c=[]}
+
+
+                };
+            }).catch((error) => {
+
+            });
+        } else {
+
+        }
+
+</script>
+</body>
+</html>
+

@@ -354,7 +354,7 @@
                 <div class="chat-header-action">
                     <ul class="list-inline">
                         <li class="list-inline-item">
-                            <a href="#" class="btn btn-success">
+                            <a href="#" class="btn btn-success" id="showCallModal1">
                                 <i class="fa fa-phone" aria-hidden="true"></i>
                             </a>
                         </li>
@@ -376,7 +376,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="chat-body" id="chat_123"> <!-- .no-message -->
+            <div class="chat-body" id="chat_123"> <!-- message -->
                 <div class="messages">
                     {% for message in messages %}
                         <div class="message-item outgoing-message">
@@ -420,9 +420,11 @@
 
 </div>
 <!-- ./ layout -->
+
+{#调用通话弹窗#}
+
 {## 监听#}
 <script>
-
     const ws = new WebSocket(
         'ws://'  // WebSocket协议
         + window.location.host  // 当前页面的主机和端口
@@ -430,6 +432,7 @@
         + '123'  // 房间名称，作为路径的一部分
         + '/'  // 路径结束
     );
+    console.log("********",window.location.host)
     window.onload = function () {
         ws.onmessage = function (event) {
             const data = JSON.parse(event.data);
@@ -451,11 +454,11 @@
             messageItem.appendChild(messageAction);
             messagesContainer.appendChild(messageItem);
             console.log(data.message)
-            var chatElement = document.getElementById('chat_123');  
-    if (chatElement) {  
-        chatElement.scrollTop = chatElement.scrollHeight;  
-    }  
-            
+            var chatElement = document.getElementById('chat_123');
+    if (chatElement) {
+        chatElement.scrollTop = chatElement.scrollHeight;
+    }
+
 
         };
     };
@@ -475,7 +478,12 @@
 
 <!-- Soho -->
 <script src="/static/js/soho.min.js"></script>
-
+<script>
+        // 绑定点击事件以显示模态窗口
+        $('#showCallModal1').click(function() {
+            $('#call').modal('show');
+        });
+</script>
 
 <script>
     // 获取触发器元素
@@ -563,7 +571,7 @@ document.querySelector('#chat-message-submit').onclick = function (e) {
     // 获取输入框中的消息内容
     const messageInputDom = document.querySelector('#chat-message-input');
     const message = messageInputDom.value;
-    messageInputDom.value = '';  
+    messageInputDom.value = '';
     console.log(message)
     var sender_username = "{{ current_user.username|escapejs }}";
     var receiver_username = document.getElementById('h511111').innerText;
