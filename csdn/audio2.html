@@ -13,9 +13,7 @@
     </style>
 </head>
 <body>
-<div id="status">预备开始</div>
 <audio id="video" src=""></audio>
-<a onclick='aa()'>开始</a> <a onclick='bb()'>结束</a>
 <script type="text/javascript">
 if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // 获取用户的媒体信息
@@ -28,7 +26,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         }
     }).then((stream) => {
         const audioContext = new AudioContext();
-        const socket = new WebSocket('ws://172.20.41.114:8765');
+        const socket = new WebSocket('ws://192.168.60.105:8765');
 
         // 设置WebSocket事件监听器
         socket.onopen = () => console.log('WebSocket is open');
