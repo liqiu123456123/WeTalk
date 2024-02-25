@@ -1,15 +1,6 @@
-# 复制粘贴即可，细节自己百度，主要是跑通程序
-import base64
 import asyncio
 import websockets
-import cv2
-import math
-import np
 import pyaudio
-import wave
-import time
-import threading
-import matplotlib.pyplot as plt
 
 chunk = 4096  # Record in chunks of 1024 samples
 sample_format = pyaudio.paInt16  # 16 bits per sample
@@ -47,7 +38,7 @@ async def echo(websocket, path):
 
 async def main():
     # start a websocket server
-    async with websockets.serve(echo, "192.168.60.105", 8765):
+    async with websockets.serve(echo, "172.20.41.114", 8765):
         await asyncio.Future()  # run forever
 
 

@@ -1,0 +1,80 @@
+<meta charset="UTF-8">
+<a href="#" class="btn btn-success" id="showCallModal1">
+    <i class="fa fa-phone" aria-hidden="true"></i> 显示视频
+
+</a>
+
+<div id="localVideoContainer">
+    <video id="localVideo" autoplay muted></video>
+</div>
+
+<div id="remoteVideoContainer">
+    <video id="remoteVideo" autoplay></video>
+</div>
+
+<script>
+// 创建WebSocket连接并设置事件监听
+function createWebSocket(roomName) {
+    const wsUrl = `ws://${window.location.host}/ws/chat/${roomName}/`;
+    //const ws = new WebSocket(wsUrl);
+        const ws = new WebSocket(
+        'ws://'  // WebSocket协议
+        + "127.0.0.1:8000"  // 当前页面的主机和端口
+        + '/ws/chat/'  // WebSocket端点的路径前缀
+        + '123'  // 房间名称，作为路径的一部分
+        + '/'  // 路径结束
+    );
+
+    ws.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        if (data.type === 'video' && data.url) {
+            const remoteVideo = document.getElementById('remoteVideo');
+            remoteVideo.srcObject = null; // 清除旧的视频流
+            remoteVideo.src = data.url; // 设置新的视频流URL
+        }
+    };
+
+    ws.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
+
+    ws.onclose = function(event) {
+        console.log('WebSocket connection closed:', event.code, event.reason);
+    };
+
+    return ws;
+}
+
+// 获取本地摄像头视频流并显示
+function getLocalVideoStream() {
+    return navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+            const localVideo = document.getElementById('localVideo');
+            localVideo.srcObject = stream;
+            return stream;
+        })
+        .catch(error => {
+            console.error('Error accessing local video stream:', error);
+        });
+}
+
+// 显示视频的函数
+function showVideos() {
+    getLocalVideoStream();
+    const roomName = "123";
+    const ws = createWebSocket(roomName);
+}
+
+// 页面加载完成后设置事件监听
+window.onload = function() {
+    const showCallModalButton = document.getElementById('showCallModal1');
+
+    showCallModalButton.addEventListener('click', function(event) {
+        event.preventDefault(); // 阻止默认的点击行为
+        showVideos(); // 显示视频
+    });
+};
+
+
+
+</script>

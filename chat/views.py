@@ -20,9 +20,9 @@ def user_chat_history(request, from_username, to_user_name):
         Q(sender_id=sender_id, receiver_id=receiver_id) |  # 发送者是 send_id，接收者是 to_id
         Q(sender=receiver_id, receiver=sender_id)  # 或者发送者是 to_id，接收者是 send_id
     ).order_by('timestamp')  # 按时间戳排序
-    for message in messages:
-        print(
-            f"From: {message.sender}, To: {message.receiver}, Content: {message.content}, Timestamp: {message.timestamp}")
+    # for message in messages:
+    #     print(
+    #         f"From: {message.sender}, To: {message.receiver}, Content: {message.content}, Timestamp: {message.timestamp}")
 
         # 将消息列表转换为JSON格式
     messages_json = list(messages.values('sender__username', 'receiver__username', 'content', 'timestamp'))

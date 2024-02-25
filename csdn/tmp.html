@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击按钮弹出视频窗口</title>
+</head>
+<body>
+
+<button onclick="openVideoWindow()">点击弹出视频窗口</button>
+
+<script>
+    function openVideoWindow() {
+        // 假设 video.html 文件与当前HTML文件在同一目录下
+        window.open('video.html', '_blank', 'width=1200,height=700,scrollbars=yes');
+    }
+</script>
+
+</body>
+</html>

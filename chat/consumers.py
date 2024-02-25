@@ -44,12 +44,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
             user = MyUser.objects.get(username=sender_username)
             # 获取用户的id
             sender_id = user.id
-
             user = MyUser.objects.get(username=receiver_username)
             # 获取用户的id
             receiver_id = user.id
-
-            print("message", message)
             # 创建ChatMessage实例并保存到数据库
             chat_message = ChatMessage(content=message, sender_id=sender_id,
                                        receiver_id=receiver_id)  # 假设ChatMessage有一个content字段
@@ -66,39 +63,26 @@ class ChatConsumer(AsyncWebsocketConsumer):
             image_data = data.get('image', None)
             unique_id = data.get('id', None)
 
-            if image_data and unique_id:
-                # 去掉Base64编码字符串的前缀（例如"data:image/png;base64,"）
-                image_base64 = image_data.split(',')[1]
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {"type": "chat.message", "video_message": image_data, "id": unique_id})
 
-                # 解码Base64字符串为字节
-                imm = base64.b64decode(image_base64)
-
-                # 将字节转换为numpy数组
-                im_np = np.asarray(bytearray(imm), dtype="uint8")
-
-                # 根据图像数据解码图像
-                im = cv2.imdecode(np.frombuffer(im_np, np.uint8), cv2.IMREAD_COLOR)
-
-                # 使用唯一ID作为窗口名称
-                window_name = f'Video Stream {unique_id}'
-
-                # 显示图像
-                cv2.imshow(window_name, im)
-
-                # 等待按键，如果需要的话，可以调整等待时间或者使用其他逻辑来控制窗口的关闭
-                cv2.waitKey(1)
-            else:
-                print("Incomplete data received")
-                # 从JSON中提取消息内容
 
         # 当从房间组接收到消息时调用的异步方法
 
     async def chat_message(self, event):
         # 从事件中提取消息内容
-        message = event["message"]
-        sender_username = event["sender_username"]
-        receiver_username = event["receiver_username"]
-        print(event)
-        # 将消息发送到WebSocket连接
-        await self.send(text_data=json.dumps(
-            {"message": message, "sender_username": sender_username, "receiver_username": receiver_username}))
+        try:
+            # 简单区分图像和文字
+            message = event["message"]
+            sender_username = event["sender_username"]
+            receiver_username = event["receiver_username"]
+            # 将消息发送到WebSocket连接
+            await self.send(text_data=json.dumps(
+                {"message": message, "sender_username": sender_username, "receiver_username": receiver_username}))
+        except:
+            message = event["video_message"]
+            uid = event["id"]
+            # 将消息发送到WebSocket连接
+            await self.send(text_data=json.dumps(
+                {"message": message,"uid":uid}))

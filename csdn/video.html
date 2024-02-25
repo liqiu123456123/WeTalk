@@ -3,24 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>视频测试</title>
+    <style>
+        #canvas {
+            display: none; /* 隐藏 canvas 元素 */
+        }
+    </style>
 </head>
 <body>
 
 <video id="video" src=""></video> <!-- 视频元素 -->
 <canvas id="canvas"></canvas> <!-- 画布元素 -->
+<canvas id="canvas2"></canvas><!-- 画布元素 -->
 </body>
 <script>
     //媒体对象
     var video = document.getElementById('video') // 获取视频元素
     var canvas = document.getElementById('canvas') // 获取画布元素
-    canvas.width = 800; // 设置画布宽度
+    canvas.width = 200; // 设置画布宽度
     canvas.height = 600; // 设置画布高度
 
     const mediaStreamConstraints = {
         video: true,
         audio: false,
         video: {
-            width: 800,
+            width: 400,
             height: 600,
             facingMode: "environment"
         }
@@ -34,7 +40,7 @@
     // 创建 WebSocket 连接
     const socket = new WebSocket(
         'ws://'  // WebSocket协议
-        + "192.168.60.105:8000"  // 当前页面的主机和端口
+        + "127.0.1.1:8000"  // 当前页面的主机和端口
         + '/ws/chat/'  // WebSocket端点的路径前缀
         + '123'  // 房间名称，作为路径的一部分
         + '/'  // 路径结束
@@ -43,13 +49,50 @@
     // 连接已打开
     socket.addEventListener('open', function (event) {
     });
-
     // 监听消息
-    socket.addEventListener('message', function (event) {
-        console.log('Message from server ', event.data); // 打印来自服务器的消息
-    });
-    navigator.mediaDevices.getUserMedia(mediaStreamConstraints).then(gotLocalMediaStream).catch();
+    var targetCanvas = document.getElementById('canvas2'); // 获取或创建video元素
+    targetCanvas.width = canvas.width;
+    targetCanvas.height = canvas.height;
+    let lastImageData; // 用于存储上一次绘制的图像数据
 
+    socket.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        let base64String = data.message; // 假设data.message是Base64编码的图像数据
+        let uid = data.uid
+        // 创建一个新的Image对象并设置其src为数据URL
+        let imgElement = new Image();
+
+        if (uid !== uniqueId) {
+
+        imgElement.src = base64String;
+        let targetContext = targetCanvas.getContext('2d');
+        // 确保图像加载完成后再绘制到目标画布上
+        imgElement.onload = function () {
+            if (lastImageData) {
+                // 如果上一次有图像数据，先绘制上一次的图像
+                targetContext.drawImage(lastImageData, 0, 0);
+            }
+
+            // 绘制新的图像
+            targetContext.drawImage(imgElement, 0, 0);
+
+            // 保存当前图像数据以供下一次使用
+            lastImageData = imgElement;
+
+            // 请求下一帧动画
+            requestAnimationFrame(drawImages);
+        };
+
+        // 请求下一帧动画
+        requestAnimationFrame(drawImages);
+    };
+
+    function drawImages() {
+        // 在这里添加绘制多个图像的逻辑（如果有的话）
+    }}
+
+
+    navigator.mediaDevices.getUserMedia(mediaStreamConstraints).then(gotLocalMediaStream).catch();
     var context = canvas.getContext("2d"); // 创建2D绘图对象
     // 生成唯一标识的函数
     function generateUniqueId() {
@@ -67,12 +110,17 @@
         img = context.getImageData(0, 0, 400, 300) // 获取图像数据
         data = img.data // 获取图像数据
         context.putImageData(img, 0, 0)
-
         im = canvas.toDataURL("image/jpe") // 将画布内容转换为图像地址
+////////////////////////////////////////////////////////////
+        // 创建一个新的canvas元素作为目标画布
 
-if (socket.readyState === WebSocket.OPEN) {
-    socket.send(JSON.stringify({ image: im, id: uniqueId }));
-}
+        // 设置目标画布的尺寸（根据需要调整）
+
+////////////////////////////////////
+
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify({image: im, id: uniqueId}));
+        }
     }, 43)
 
 
