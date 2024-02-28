@@ -59,15 +59,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
                  "receiver_username": receiver_username}
             )
         except:
+        # 区分视频和语音
             data = json.loads(text_data)
-            image_data = data.get('image', None)
-            unique_id = data.get('id', None)
+            self.type = data.get('type', None)
+            if self.type == "video":
+                image_data = data.get('image', None)
+                unique_id = data.get('id', None)
 
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {"type": "chat.message", "video_message": image_data, "id": unique_id})
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {"type": "chat.message", "video_message": image_data, "id": unique_id})
 
+            else:
+                audio_data = data.get('audio')
+                unique_id = data.get('id', None)
 
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {"type": "chat.message", "audio_message": audio_data, "id": unique_id})
         # 当从房间组接收到消息时调用的异步方法
 
     async def chat_message(self, event):
@@ -81,8 +90,37 @@ class ChatConsumer(AsyncWebsocketConsumer):
             await self.send(text_data=json.dumps(
                 {"message": message, "sender_username": sender_username, "receiver_username": receiver_username}))
         except:
-            message = event["video_message"]
-            uid = event["id"]
-            # 将消息发送到WebSocket连接
-            await self.send(text_data=json.dumps(
-                {"message": message,"uid":uid}))
+            if self.type == "video":
+                message = event["video_message"]
+                uid = event["id"]
+                # 将消息发送到WebSocket连接
+                await self.send(text_data=json.dumps(
+                    {"message": message, "uid": uid}))
+            else:
+                message = event["audio_message"]
+                import base64
+                import pyaudio
+                chunk = 4096  # Record in chunks of 1024 samples
+                sample_format = pyaudio.paInt16  # 16 bits per sample
+                channels = 2  # 两声道
+                fs = 44100  # Record at 44100 samples per second
+                p = pyaudio.PyAudio()  # 创建音频对象
+                micstream = p.open(format=sample_format,  # 音频输入流创建
+                                   channels=channels,
+                                   rate=fs,
+                                   frames_per_buffer=chunk,
+                                   input=True)
+
+                decoded_bytes = base64.b64decode(message)
+                y = []
+                for i in range(15):
+                    m = micstream.read(chunk)
+                    y.append(m)
+                # 将所有的字节数据连接成一个字节串
+                audio_bytes = b''.join(y)
+                # 将字节数据转换为 Base64 编码的字符串
+                base64_audio = base64.b64encode(audio_bytes).decode('utf-8')
+
+                uid = event["id"]
+                # 将消息发送到WebSocket连接
+                if len(message) > 1: await self.send(bytes_data=audio_bytes)

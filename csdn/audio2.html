@@ -26,7 +26,67 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
         }
     }).then((stream) => {
         const audioContext = new AudioContext();
-        const socket = new WebSocket('ws://192.168.60.105:8765');
+        const socket = new WebSocket(
+        'ws://'  // WebSocket协议
+        + "192.168.60.105:8000"  // 当前页面的主机和端口
+        + '/ws/chat/'  // WebSocket端点的路径前缀
+        + '123'  // 房间名称，作为路径的一部分
+        + '/'  // 路径结束
+    );
+
+        const audioCtx = new AudioContext();
+        socket.onmessage = function (event) {
+        var reader = new FileReader(); //文件阅读器
+        reader.readAsArrayBuffer(event.data); //读取成ArrayBuffer对象
+        reader.onload = function () { //读取完毕
+            //解码
+            var a = new Int16Array(this.result);//Int32Array
+
+// 创建音频缓存对象
+            const noiseBuffer = new AudioBuffer({
+                length: a.length / 2,//长度
+                sampleRate: 44100,//采样率
+                numberOfChannels: 2,//通道数
+            });
+
+// 创建一个空缓冲区
+            const data1 = noiseBuffer.getChannelData(0);//获取轨道数据,这里是左声道
+            const data2 = noiseBuffer.getChannelData(1);//获取轨道数据,这里是右声道
+//填充data
+            var c = []
+
+            for (let i = 0; i < a.length; i = i + 2) {
+                data1[i - Math.floor(i * 0.5)] = a[i] / 30000;
+                data2[i - Math.floor(i * 0.5)] = a[i + 1] / 30000;//data[i];
+                // c.push(a[i]/9184)
+
+            }
+            console.log(noiseBuffer.getChannelData(0))
+            console.log(noiseBuffer.getChannelData(1))
+// 创建音频流对象
+            const noise = new AudioBufferSourceNode(audioCtx, {
+                buffer: noiseBuffer
+            });
+
+            noise.connect(audioCtx.destination);
+
+            noise.start();
+
+
+        }
+
+        }
+
+        function generateUniqueId() {
+        // 使用时间戳确保唯一性，并结合随机数来避免在同一毫秒内生成相同的ID
+        return 'uid_' + Date.now() + '_' + Math.round(Math.random() * 1000000);
+    }
+
+    // ... 其他代码保持不变
+
+    // 生成唯一标识
+    let uniqueId = generateUniqueId();
+
 
         // 设置WebSocket事件监听器
         socket.onopen = () => console.log('WebSocket is open');
@@ -51,9 +111,19 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 buffer[i2++] = Math.trunc(channelData[i] * 30000);
                 buffer[i2++] = Math.trunc(channelData1[i] * 30000);
             }
-
+            // 将ArrayBuffer转换为Base64字符串
+function arrayBufferToBase64(buffer) {
+    var binary = '';
+    var bytes = new Uint8Array(buffer);
+    var len = bytes.byteLength;
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+}
             // 发送二进制数据
-            socket.send(buffer.buffer);
+            const base64AudioData = arrayBufferToBase64(buffer.buffer);
+            socket.send(JSON.stringify({audio:base64AudioData,type:"audio",id:uniqueId}));
 
             // 重置索引以准备下一次的音频数据填充
             i2 = 0;
@@ -64,6 +134,9 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 } else {
     console.error('getUserMedia is not supported on this browser.');
 }
+
+
+
 </script>
 </body>
 </html>

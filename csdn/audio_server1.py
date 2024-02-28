@@ -1,15 +1,8 @@
 # 复制粘贴即可，细节自己百度，主要是跑通程序
-import base64
+
 import asyncio
 import websockets
-import cv2
-import math
-import np
 import pyaudio
-import wave
-import time
-import threading
-import matplotlib.pyplot as plt
 
 chunk = 4096  # Record in chunks of 1024 samples
 sample_format = pyaudio.paInt16  # 16 bits per sample
@@ -33,9 +26,9 @@ stream2 = p.open(format=sample_format,  # 音频输出流创建
 
 
 async def echo(websocket, path):
-    print(websockets.serve)
+
     async for message in websocket:
-        stream2.write(message)  # 播放
+        #stream2.write(message)  # 播放
         # m=micstream.read(chunk)#录音
         y = []
         for i in range(15):

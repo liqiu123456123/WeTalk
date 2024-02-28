@@ -41,8 +41,12 @@ async def echo(websocket, path):
     # 异步迭代WebSocket接收到的消息
     async for message in websocket:
         # 将接收到的WebSocket消息写入音频输出流（播放音频）
-        print(message)
-        stream2.write(message)  # 播放
+        import json
+        import base64
+        data = json.loads(message)
+        audio_data = data.get('audio')
+        audio = base64.b64decode(audio_data)
+        stream2.write(audio)  # 播放
 
         # 初始化一个空列表y，用于存储从麦克风读取的音频数据
         y = []

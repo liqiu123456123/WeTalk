@@ -40,7 +40,7 @@
     // 创建 WebSocket 连接
     const socket = new WebSocket(
         'ws://'  // WebSocket协议
-        + "127.0.1.1:8000"  // 当前页面的主机和端口
+        + "127.0.0.1:8000"  // 当前页面的主机和端口
         + '/ws/chat/'  // WebSocket端点的路径前缀
         + '123'  // 房间名称，作为路径的一部分
         + '/'  // 路径结束
@@ -119,7 +119,7 @@
 ////////////////////////////////////
 
         if (socket.readyState === WebSocket.OPEN) {
-            socket.send(JSON.stringify({image: im, id: uniqueId}));
+            socket.send(JSON.stringify({image: im, id: uniqueId,type:"video"}));
         }
     }, 43)
 
