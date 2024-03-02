@@ -4,17 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="1.音频更新">
-      <change afterPath="$PROJECT_DIR$/blue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/blue_2.jpg" afterDir="false" />
+    <list default="true" id="6cd7d878-6bc6-441b-a4ae-2fcb3826f410" name="更改" comment="1.reademe更新">
+      <change afterPath="$PROJECT_DIR$/account/migrations/0006_delete_emailvalid_remove_myuser_company_and_more.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/img_tmp.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/liu.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/liu2.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/image/tang.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/liu2.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat/consumers.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat/consumers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csdn/audio1.html" beforeDir="false" afterPath="$PROJECT_DIR$/csdn/audio1.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csdn/audio2.html" beforeDir="false" afterPath="$PROJECT_DIR$/csdn/audio2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csdn/audio_server1.py" beforeDir="false" afterPath="$PROJECT_DIR$/csdn/audio_server1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csdn/audio_server2.py" beforeDir="false" afterPath="$PROJECT_DIR$/csdn/audio_server2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csdn/video.html" beforeDir="false" afterPath="$PROJECT_DIR$/csdn/video.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/soho.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/soho.min.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/拍照.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/拍照.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp.py" beforeDir="false" afterPath="$PROJECT_DIR$/tmp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tmp1.py" beforeDir="false" afterPath="$PROJECT_DIR$/tmp1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,6 +43,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -52,42 +60,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Django 服务器.WeTalk.executor": "Run",
-    "JavaScript 调试.audio2.html.executor": "Run",
-    "JavaScript 调试.index.html.executor": "Run",
-    "JavaScript 调试.video.html.executor": "Run",
-    "JavaScript 调试.拍照.html.executor": "Run",
-    "JavaScript 调试.视频聊天.html.executor": "Run",
-    "Python.audio_server1.executor": "Run",
-    "Python.audio_server2.executor": "Run",
-    "Python.setup.executor": "Run",
-    "Python.tmp.executor": "Run",
-    "Python.tmp1.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "django.template.preview.state": "SHOW_EDITOR",
-    "last_opened_file_path": "C:/Users/Administrator/PycharmProjects/WeTalk",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django 服务器.WeTalk.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.audio2.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.register.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.video.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.拍照.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.视频聊天.html.executor&quot;: &quot;Run&quot;,
+    &quot;Python.audio_server1.executor&quot;: &quot;Run&quot;,
+    &quot;Python.audio_server2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.setup.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tmp.executor&quot;: &quot;Run&quot;,
+    &quot;Python.tmp1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Administrator/PycharmProjects/WeTalk&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk" />
+      <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\image" />
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\csdn" />
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\static\media\img" />
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\media\avatars" />
-      <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\static" />
@@ -96,11 +105,11 @@
       <recent name="C:\Users\Administrator\PycharmProjects\WeTalk\image" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.audio_server1">
-    <configuration name="audio2.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WeTalk/csdn/audio2.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="Python.tmp1">
+    <configuration name="拍照.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WeTalk/templates/拍照.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="video.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WeTalk/csdn/video.html" useBuiltInWebServerPort="true">
+    <configuration name="register.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/WeTalk/templates/register.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="audio_server1" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -126,7 +135,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="audio_server2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="tmp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="WeTalk" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -135,12 +144,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/csdn" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/csdn/audio_server2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tmp.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -199,11 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.audio_server1" />
-        <item itemvalue="JavaScript 调试.audio2.html" />
-        <item itemvalue="Python.audio_server2" />
-        <item itemvalue="JavaScript 调试.video.html" />
         <item itemvalue="Python.tmp1" />
+        <item itemvalue="Python.tmp" />
+        <item itemvalue="JavaScript 调试.register.html" />
+        <item itemvalue="JavaScript 调试.拍照.html" />
+        <item itemvalue="Python.audio_server1" />
       </list>
     </recent_temporary>
   </component>
@@ -244,7 +253,9 @@
       <workItem from="1708836381412" duration="6799000" />
       <workItem from="1708850494255" duration="2649000" />
       <workItem from="1708862922829" duration="157000" />
-      <workItem from="1708948540221" duration="23674000" />
+      <workItem from="1708948540221" duration="24801000" />
+      <workItem from="1709103370290" duration="11870000" />
+      <workItem from="1709304448309" duration="17819000" />
     </task>
     <task id="LOCAL-00001" summary="2.11更新">
       <option name="closed" value="true" />
@@ -390,7 +401,23 @@
       <option name="project" value="LOCAL" />
       <updated>1708857015230</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="1.音频接收播放更新">
+      <option name="closed" value="true" />
+      <created>1709100043846</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709100043846</updated>
+    </task>
+    <task id="LOCAL-00020" summary="1.reademe更新">
+      <option name="closed" value="true" />
+      <created>1709102861239</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709102861239</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -425,13 +452,15 @@
     <MESSAGE value="1.优化index.html代码" />
     <MESSAGE value="1.视频通话基本完成" />
     <MESSAGE value="1.音频更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="1.音频更新" />
+    <MESSAGE value="1.音频接收播放更新" />
+    <MESSAGE value="1.reademe更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="1.reademe更新" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WeTalk$audio_server2.coverage" NAME="audio_server2 覆盖结果" MODIFIED="1709089422569" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/csdn" />
-    <SUITE FILE_PATH="coverage/WeTalk$tmp1.coverage" NAME="tmp1 覆盖结果" MODIFIED="1709039831061" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WeTalk$tmp1.coverage" NAME="tmp1 覆盖结果" MODIFIED="1709372258029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WeTalk$audio_server1.coverage" NAME="audio_server1 覆盖结果" MODIFIED="1709097476697" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/csdn" />
-    <SUITE FILE_PATH="coverage/WeTalk$tmp.coverage" NAME="tmp 覆盖结果" MODIFIED="1707557713967" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/WeTalk$tmp.coverage" NAME="tmp 覆盖结果" MODIFIED="1709371335436" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/WeTalk$setup.coverage" NAME="setup 覆盖结果" MODIFIED="1707545636007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../../../dlib-19.24.2" />
   </component>
 </project>

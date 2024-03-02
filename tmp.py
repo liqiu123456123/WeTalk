@@ -57,6 +57,8 @@ def get_face_data():
         load = face_recognition.load_image_file(img)
         # 获取图片中的人脸编码，这里假设每张图片只有一个人脸
         encodings = face_recognition.face_encodings(load)[0]
+        print(type(encodings))
+        print(encodings)
         # 将人脸编码添加到列表中
         image_encoding_content.append(encodings)
         # 打印人脸编码的数量
@@ -93,7 +95,7 @@ def face_recognitions(data_base_image, tmp_image):
         # 使用数据库中的人脸编码与临时图片的人脸编码进行比较
     # compare_faces 返回一个布尔值列表，表示是否与数据库中的人脸匹配
     results = face_recognition.compare_faces(data_base_image[1], tmp_encoding)
-
+    print(results)
     # 如果结果列表中有 True，说明匹配成功
     if True in results:
         # 获取匹配成功的人脸在数据库中的索引
@@ -109,9 +111,9 @@ def face_recognitions(data_base_image, tmp_image):
     # 临时图片的路径
 
 
-tmp_image = r'379dc8b4b8017be687eb2c07296d4ea2.jpg'
+tmp_image = r'liu2.jpeg'
 # 调用之前定义的 get_face_data 函数获取数据库中的图片文件名和人脸编码
 tuple_data = get_face_data()
+
 # 调用人脸识别函数进行人脸识别
-print(tuple_data)
 face_recognitions(tuple_data, tmp_image)

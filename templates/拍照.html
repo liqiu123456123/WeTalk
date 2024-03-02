@@ -1,64 +1,70 @@
-<!DOCTYPE html>
+<!DOCTYPE html>  
+
+<html>  
 <head> <meta http-equiv="Content-Type" content="text/html;charset=utf-8"> </head>
-<html>
-<head>
-    <title>摄像头拍照</title>
-    <style>
-        #video-preview {
-            width: 50%;
-            height: auto;
-            border: 1px solid #ccc;
-        }
-        #canvas {
-            display: none;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
+<head>  
+    <title>摄像头拍照</title>  
+    <style>  
+        #video-preview {  
+            width: 600px;  
+            height: 400px;
+        }  
+        #canvas {  
+            display: none;  
+            width: 600px;  
+            height: 400px;
+        }  
+    </style>  
+</head>  
+<body>  
+  
+<h2>人脸采集注册</h2>  
+  
+<video id="video-preview" autoplay></video>  
+<button id="snap-btn">拍照</button>  
+<canvas id="canvas"></canvas>  
+  
+<script>  
+    // 获取视频流  
+    function getVideoStream() {  
+        return navigator.mediaDevices.getUserMedia({ video: true })  
+            .then(function(stream) {  
+                var video = document.querySelector('#video-preview');  
+                video.srcObject = stream;  
+            })  
+            .catch(function(error) {  
+                console.error("Error accessing the video stream.", error);  
+            });  
+    }  
+  
+    // 拍照并显示照片  
+    function takeSnapshot() {  
+        var video = document.querySelector('#video-preview');  
+        var canvas = document.querySelector('#canvas');  
 
-<h2>摄像头拍照</h2>
-
-<video id="video-preview" autoplay></video>
-<button id="snap-btn">拍照</button>
-<canvas id="canvas"></canvas>
-
-<script>
-    // 获取视频流
-    function getVideoStream() {
-        return navigator.mediaDevices.getUserMedia({ video: true })
-            .then(function(stream) {
-                var video = document.querySelector('#video-preview');
-                video.srcObject = stream;
-            })
-            .catch(function(error) {
-                console.error("Error accessing the video stream.", error);
-            });
-    }
-
-    // 拍照并显示照片
-    function takeSnapshot() {
-        var video = document.querySelector('#video-preview');
-        var canvas = document.querySelector('#canvas');
-        var context = canvas.getContext('2d');
-
-        // 调整canvas大小以匹配视频
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-
-        // 将视频帧绘制到canvas上
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-        // 显示canvas
-        canvas.style.display = 'block';
-    }
-
-    // 当页面加载时获取视频流
-    window.onload = getVideoStream;
-
-    // 为拍照按钮添加点击事件
-    document.querySelector('#snap-btn').addEventListener('click', takeSnapshot);
-</script>
-
-</body>
+        var context = canvas.getContext('2d');  
+         var snapBtn = document.querySelector('#snap-btn'); // 获取拍照按钮 
+  
+        // 暂停视频流  
+        video.pause();  
+  
+        // 将视频帧绘制到canvas上  
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);  
+  
+        // 显示canvas并隐藏video  
+        canvas.style.display = 'block';  
+        video.style.display = 'none';
+         snapBtn.style.display = 'none'; // 隐藏拍照按钮  
+        // 停止视频流  
+        video.srcObject.getTracks().forEach(track => track.stop());  
+    }  
+  
+    // 当页面加载时获取视频流  
+    window.onload = getVideoStream;  
+  
+    // 为拍照按钮添加点击事件  
+    document.querySelector('#snap-btn').addEventListener('click', takeSnapshot);  
+</script>  
+  
+</body>  
 </html>

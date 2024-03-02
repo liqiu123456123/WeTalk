@@ -12,6 +12,18 @@
 
     <!-- Soho css -->
     <link rel="stylesheet" href="/static/css/soho.min.css">
+    
+    <style>
+        #video-preview {  
+            width: 600px;  
+            height: 400px;
+        }  
+        #canvas {
+                        display: none;  
+            width: 600px;  
+            height: 400px;
+        }  
+    </style>
 </head>
 <body class="form-membership">
 
@@ -44,29 +56,20 @@
     <form action="" method="post">
         {% csrf_token %}
         <div class="form-group input-group-lg">
-            <input type="text" name="username" class="form-control" placeholder="昵称" required>
+            <video id="video-preview" autoplay></video>
         </div>
         <div class="form-group input-group-lg">
-            <input type="email" name="email" class="form-control" placeholder="邮箱" required>
-        </div>
+        <button id="snap-btn" type="button">拍照</button></div>
+        
         <div class="form-group input-group-lg">
-            <input type="password" name="password" class="form-control" placeholder="密码" required>
+        <canvas id="canvas" name="tmp_img"></canvas>  
         </div>
-        {% if confirmPassword %}
-        <div class="form-group input-group-lg">
-            <input type="password" name="repeat_password" class="form-control" placeholder="重复密码" required>
-        </div>
-        {% endif %}
-    
-    <!-- 添加获取邮箱验证码的输入框 -->  
-    <div class="form-group input-group-lg">  
-        <input type="text" name="email_verification_code" class="form-control" placeholder="请输入邮箱验证码" required>  
-    </div>  
-    <!-- 添加一个按钮或链接来发送验证码 -->  
-    <div class="form-group">  
-        <button type="button" class="btn btn-secondary btn-lg btn-block" id="send-verification-code">发送验证码</button>  
-    </div>  
+    <div class="form-group input-group-lg">    
+<canvas id="canvas"></canvas>
+    </div>
+
     <div>{{ tips }}</div>
+        
         <button class="btn btn-primary btn-lg btn-block">注册</button>
         <hr>
         <p class="text-muted">已经有账号?</p>
@@ -76,6 +79,76 @@
 
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  
+
+
+<script>  
+    // 获取视频流  
+    function getVideoStream() {  
+        return navigator.mediaDevices.getUserMedia({ video: true })  
+            .then(function(stream) {  
+                var video = document.querySelector('#video-preview');  
+                video.srcObject = stream;  
+            })  
+            .catch(function(error) {  
+                console.error("Error accessing the video stream.", error);  
+            });  
+    }  
+  
+    // 拍照并显示照片  
+    function takeSnapshot() {  
+        var video = document.querySelector('#video-preview');  
+        var canvas = document.querySelector('#canvas');  
+
+        var context = canvas.getContext('2d');  
+         var snapBtn = document.querySelector('#snap-btn'); // 获取拍照按钮 
+  
+        // 暂停视频流  
+        video.pause();  
+  
+        // 将视频帧绘制到canvas上  
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);  
+        // 将canvas转换为DataURL  
+    var dataUrl = canvas.toDataURL('image/jpeg');  
+        // 显示canvas并隐藏video  
+        canvas.style.display = 'block';  
+        video.style.display = 'none';
+         snapBtn.style.display = 'none'; // 隐藏拍照按钮  
+        // 停止视频流  
+        video.srcObject.getTracks().forEach(track => track.stop());  
+        
+        // 通过AJAX将图片发送到Django服务器  
+    var xhr = new XMLHttpRequest();  
+    xhr.open("POST", "../upload_img/", true); // Django的上传接口URL  
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");  
+    xhr.onload = function () {  
+        if (xhr.status === 200) {  
+            // 图片上传成功  
+            console.log("图片上传成功！");  
+        } else {  
+            // 图片上传失败  
+            console.error("图片上传失败：", xhr.statusText);  
+        }  
+    };  
+    xhr.send("image=" + encodeURIComponent(dataUrl)); // 将DataURL作为表单数据发送
+
+        
+    }  
+  
+    // 当页面加载时获取视频流  
+    window.onload = getVideoStream;
+    // 为拍照按钮添加点击事件  
+    document.querySelector('#snap-btn').addEventListener('click', takeSnapshot);  
+    
+    
+    
+    
+    
+    
+</script>  
+
+
+
+
 <script>  
 $(document).ready(function() {  
     $('#send-verification-code').click(function() { 
@@ -110,6 +183,16 @@ $(document).ready(function() {
     });  
 });  
 </script>
+
+
+<script>
+    // 上传拍照头像
+    
+</script>
+
+
+
+
 <!-- JQuery -->
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
 
