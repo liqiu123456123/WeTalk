@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 from .models import Friendship
 from django.http import JsonResponse
 from account.models import MyUser
-from django.db.models import F
 from django.utils import timezone
 from django.db.models import Case, Value, When, F
 from django.db import models

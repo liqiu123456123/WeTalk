@@ -1,20 +1,15 @@
-import datetime
-import os
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.backends import ModelBackend
 from django.db.models import Q
-from django.http import JsonResponse
 from WeTalk.settings import MEDIA_ROOT
 from .models import MyUser
 from friendship.models import Friendship
 import random
 import string
 import os  # 导入os库，用于操作文件
-import cv2  # 导入cv2库，用于图像处理，例如绘制矩形框
-from PIL import Image  # 导入PIL库中的Image模块，用于图像处理，例如绘制图片
 import face_recognition  # 导入face_recognition库，用于人脸识别
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -41,7 +36,6 @@ def upload_image(request):
     return JsonResponse({'status': 'error'}, status=400)
 
 
-
 def upload_file(request):
     if request.method == "POST":
         # 或者使用 items() 方法同时获取键和值
@@ -64,13 +58,33 @@ def upload_file(request):
 
 
 class CustomBackend(ModelBackend):
-    def authenticate(self, request, username=None, password=None, **kwargs):
+    def authenticate(self, request, face_code=None, **kwargs):
         try:
-            user = MyUser.objects.get(Q(email=username))
-            if user.check_password(password):
+            # 获取所有人的人脸数据
+            all_users = MyUser.objects.all()
+            face_code_list = []
+            # 遍历所有记录并输出face_code字段
+            for user in all_users:
+                tmp = user.face_code
+                tmp = tmp[1:-1]
+                # 使用split方法按空格分割字符串
+                list_data = tmp.split()
+                # 将列表转换为NumPy数组
+                np_array = np.array(list_data, dtype=float)
+                face_code_list.append(np_array)
+
+            results = face_recognition.compare_faces(face_code_list, face_code)
+            for i, val in enumerate(results):
+                if val:
+                    true_index = i
+            tmp_code = face_code_list[true_index]
+            user = MyUser.objects.get(face_code=tmp_code)
+            # 判断是否存在得到face_flag
+            if True in results:
                 return user
         except Exception as e:  # 可以捕获除与程序退出sys.exit()相关之外的所有异常
             return None
+
 
 @login_required
 def index(request):
@@ -97,7 +111,8 @@ def index(request):
         }
     ]
 
-    context = {'pending_requests': pending_requests, 'current_user': current_user, 'friends': friends,'messages': messages}
+    context = {'pending_requests': pending_requests, 'current_user': current_user, 'friends': friends,
+               'messages': messages}
     return render(request, 'index.html', context)
 
 
@@ -106,22 +121,25 @@ def user_login(request):
     context = {}
     # If the request is a POST, try to authenticate the user
     if request.method == 'POST':
-        account = request.POST['email']
-        password = request.POST['password']
+        tmp_img = r".\image\img_tmp.jpg"
+        picture_of_tmp = face_recognition.load_image_file(tmp_img)
+        face_encoding = face_recognition.face_encodings(picture_of_tmp)[0]
+
         # Authenticate the user
         # 这里的username实际上是邮箱
-        user = authenticate(request, username=account, password=password)
+        user = authenticate(request, face_code=face_encoding)
         # If authentication is successful, log the user in
         if user:
             login(request, user)
             return redirect(reverse('index'))
-        else:
-            context['error_message'] = '用户名或密码不正确'
+
     return render(request, 'login.html', context)
+
 
 def generate_random_string(length):
     letters = string.ascii_letters
     return ''.join(random.choice(letters) for i in range(length))
+
 
 def register(request):
     confirmPassword = True
@@ -141,7 +159,7 @@ def register(request):
 
         all_users = MyUser.objects.all()
         face_code_list = []
-        #遍历所有记录并输出face_code字段
+        # 遍历所有记录并输出face_code字段
         for user in all_users:
             tmp = user.face_code
             tmp = tmp[1:-1]

@@ -9,7 +9,17 @@
 
     <!-- Favicon -->
     <link rel="icon" href="./media/img/favicon.png" type="image/png">
-
+    <style>
+        #video-preview {  
+            width: 600px;  
+            height: 400px;
+        }  
+        #canvas {
+                        display: none;  
+            width: 600px;  
+            height: 400px;
+        }  
+    </style>
     <!-- Soho css -->
     <link rel="stylesheet" href="/static/css/soho.min.css">
 </head>
@@ -43,21 +53,22 @@
     <!-- form -->
     <form action="" method="post">
     {% csrf_token %}
+    
         <div class="form-group input-group-lg">
-            <input type="text" class="form-control" name="email" placeholder="邮箱" required autofocus>
+            <video id="video-preview" autoplay></video>
         </div>
         <div class="form-group input-group-lg">
-            <input type="password" class="form-control" name="password" placeholder="密码" required>
-        </div>
+        <button id="snap-btn" type="button">拍照</button></div>
+        
+        <div class="form-group input-group-lg">
+        <canvas id="canvas" name="tmp_img"></canvas>  </div>
                 {% if error_message %}  
             <div style="color: red;">{{ error_message }}</div>  
         {% endif %}  
         <div class="form-group d-flex justify-content-between">
             <div class="custom-control custom-checkbox">
                 <input type="checkbox" class="custom-control-input" checked="" id="customCheck1">
-                <label class="custom-control-label" for="customCheck1">记住账号</label>
             </div>
-            <a href="./reset-password">重设密码</a>
         </div>
         <button  id="loginButton" class="btn btn-primary btn-lg btn-block">登陆</button>
         <p class="text-muted">还没有注册账号?</p>
@@ -66,6 +77,71 @@
     <!-- ./ form -->
 
 </div>
+
+<script>  
+    // 获取视频流  
+    function getVideoStream() {  
+        return navigator.mediaDevices.getUserMedia({ video: true })  
+            .then(function(stream) {  
+                var video = document.querySelector('#video-preview');  
+                video.srcObject = stream;  
+            })  
+            .catch(function(error) {  
+                console.error("Error accessing the video stream.", error);  
+            });  
+    }  
+  
+    // 拍照并显示照片  
+    function takeSnapshot() {  
+        var video = document.querySelector('#video-preview');  
+        var canvas = document.querySelector('#canvas');  
+
+        var context = canvas.getContext('2d');  
+         var snapBtn = document.querySelector('#snap-btn'); // 获取拍照按钮 
+  
+        // 暂停视频流  
+        video.pause();  
+  
+        // 将视频帧绘制到canvas上  
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);  
+        // 将canvas转换为DataURL  
+    var dataUrl = canvas.toDataURL('image/jpeg');  
+        // 显示canvas并隐藏video  
+        canvas.style.display = 'block';  
+        video.style.display = 'none';
+         snapBtn.style.display = 'none'; // 隐藏拍照按钮  
+        // 停止视频流  
+        video.srcObject.getTracks().forEach(track => track.stop());  
+        
+        // 通过AJAX将图片发送到Django服务器  
+    var xhr = new XMLHttpRequest();  
+    xhr.open("POST", "../upload_img/", true); // Django的上传接口URL  
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");  
+    xhr.onload = function () {  
+        if (xhr.status === 200) {  
+            // 图片上传成功  
+            console.log("图片上传成功！");  
+        } else {  
+            // 图片上传失败  
+            console.error("图片上传失败：", xhr.statusText);  
+        }  
+    };  
+    xhr.send("image=" + encodeURIComponent(dataUrl)); // 将DataURL作为表单数据发送
+
+        
+    }  
+  
+    // 当页面加载时获取视频流  
+    window.onload = getVideoStream;
+    // 为拍照按钮添加点击事件  
+    document.querySelector('#snap-btn').addEventListener('click', takeSnapshot);  
+    
+    
+    
+    
+    
+    
+</script>  
 
 <!-- JQuery -->
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
