@@ -45,6 +45,12 @@
 <!-- 开始 -->
 ## 开始
 
+![1.png](reademe_img%2F1.png)
+![2.png](reademe_img%2F2.png)
+![3.png](reademe_img%2F3.png)
+![4.png](reademe_img%2F4.png)
+![5.jpg](reademe_img%2F5.jpg)
+![6.png](reademe_img%2F6.png)
 这是一份在本地构建项目的指导的例子。
 要获取本地副本并且配置运行，你可以按照下面的示例步骤操作。
 
